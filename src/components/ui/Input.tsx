@@ -1,6 +1,6 @@
 'use client';
 
-import { forwardRef, InputHTMLAttributes, TextareaHTMLAttributes, ReactNode } from 'react';
+import { forwardRef, InputHTMLAttributes, TextareaHTMLAttributes, SelectHTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 // ============================================
@@ -17,20 +17,20 @@ interface InputProps extends Omit<InputHTMLAttributes<HTMLInputElement>, 'size'>
 }
 
 const Input = forwardRef<HTMLInputElement, InputProps>(
-  (
-    {
-      className,
-      type = 'text',
-      label,
-      error,
-      hint,
-      leftIcon,
-      rightIcon,
-      inputSize = 'md',
-      id,
-      ...props
-    }
-  ) => {
+  ({
+    className,
+    type = 'text',
+    label,
+    error,
+    hint,
+    leftIcon,
+    rightIcon,
+    inputSize = 'md',
+    id,
+    required,
+    disabled,
+    ...props
+  }, ref) => {
     const inputId = id || label?.toLowerCase().replace(/\s+/g, '-');
 
     const sizeStyles = {
@@ -39,28 +39,22 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
       lg: 'h-14 text-base px-5',
     };
 
-    const iconSizes = {
-      sm: 'left-3',
-      md: 'left-4',
-      lg: 'left-5',
-    };
-
     return (
       <div className="w-full space-y-1.5">
         {label && (
           <label
             htmlFor={inputId}
-            className="block text-sm font-medium text-slate-700"
+            className="block text-sm font-medium text-[var(--foreground)]"
           >
             {label}
-            {props.required && <span className="text-red-500 ml-1">*</span>}
+            {required && <span className="text-[var(--error)] ml-1">*</span>}
           </label>
         )}
 
         <div className="relative">
           {leftIcon && (
             <div className={cn(
-              'absolute left-4 top-1/2 -translate-y-1/2 text-slate-400'
+              'absolute left-4 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)]'
             )}>
               {leftIcon}
             </div>
@@ -70,31 +64,33 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
             ref={ref}
             id={inputId}
             type={type}
+            required={required}
+            disabled={disabled}
             className={cn(
               'flex w-full rounded-xl',
-              'bg-white border border-slate-200',
-              'text-slate-900 placeholder:text-slate-400',
+              'bg-[var(--card)] border border-[var(--border)]',
+              'text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]',
               'transition-all duration-150',
               sizeStyles[inputSize],
               leftIcon && 'pl-11',
               error
-                ? 'border-red-500 focus:ring-4 focus:ring-red-500/10'
-                : 'hover:border-slate-300 focus:ring-4 focus:ring-blue-500/10',
-              props.disabled && 'bg-slate-50 cursor-not-allowed opacity-60',
+                ? 'border-[var(--error)] focus:ring-4 focus:ring-[var(--error)]/10'
+                : 'hover:border-[var(--border-hover)] focus:ring-4 focus:ring-[var(--primary)]/10 focus:border-[var(--primary)]',
+              disabled && 'bg-[var(--muted)] cursor-not-allowed opacity-60',
               className
             )}
             {...props}
           />
 
           {rightIcon && (
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--muted-foreground)]">
               {rightIcon}
             </div>
           )}
         </div>
 
-        {error && <p className="text-sm text-red-500">{error}</p>}
-        {hint && !error && <p className="text-sm text-slate-500">{hint}</p>}
+        {error && <p className="text-sm text-[var(--error)]">{error}</p>}
+        {hint && !error && <p className="text-sm text-[var(--muted-foreground)]">{hint}</p>}
       </div>
     );
   }
@@ -106,7 +102,7 @@ Input.displayName = 'Input';
 // TEXTAREA COMPONENT
 // ============================================
 
-interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement> {
+interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
   label?: string;
   error?: string;
   hint?: string;
@@ -114,10 +110,7 @@ interface TextareaProps extends Omit<TextareaHTMLAttributes<HTMLTextAreaElement>
 }
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  (
-    { className, label, error, hint, textareaSize = 'md', id, ...props },
-    ref
-  ) => {
+  ({ className, label, error, hint, textareaSize = 'md', id, required, disabled, ...props }, ref) => {
     const inputId = id || label?.toLowerCase().replace(/\s+/g, '-');
 
     const sizeStyles = {
@@ -129,31 +122,33 @@ const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
     return (
       <div className="w-full space-y-1.5">
         {label && (
-          <label htmlFor={inputId} className="block text-sm font-medium text-slate-700">
+          <label htmlFor={inputId} className="block text-sm font-medium text-[var(--foreground)]">
             {label}
-            {props.required && <span className="text-red-500 ml-1">*</span>}
+            {required && <span className="text-[var(--error)] ml-1">*</span>}
           </label>
         )}
 
         <textarea
           ref={ref}
           id={inputId}
+          required={required}
+          disabled={disabled}
           className={cn(
             'flex w-full rounded-xl resize-y',
-            'bg-white border border-slate-200',
-            'text-slate-900 placeholder:text-slate-400',
+            'bg-[var(--card)] border border-[var(--border)]',
+            'text-[var(--foreground)] placeholder:text-[var(--muted-foreground)]',
             sizeStyles[textareaSize],
             error
-              ? 'border-red-500 focus:ring-4 focus:ring-red-500/10'
-              : 'hover:border-slate-300 focus:ring-4 focus:ring-blue-500/10',
-            props.disabled && 'bg-slate-50 cursor-not-allowed opacity-60',
+              ? 'border-[var(--error)] focus:ring-4 focus:ring-[var(--error)]/10'
+              : 'hover:border-[var(--border-hover)] focus:ring-4 focus:ring-[var(--primary)]/10 focus:border-[var(--primary)]',
+            disabled && 'bg-[var(--muted)] cursor-not-allowed opacity-60',
             className
           )}
           {...props}
         />
 
-        {error && <p className="text-sm text-red-500">{error}</p>}
-        {hint && !error && <p className="text-sm text-slate-500">{hint}</p>}
+        {error && <p className="text-sm text-[var(--error)]">{error}</p>}
+        {hint && !error && <p className="text-sm text-[var(--muted-foreground)]">{hint}</p>}
       </div>
     );
   }
@@ -171,7 +166,7 @@ export interface SelectOption {
   disabled?: boolean;
 }
 
-interface SelectProps extends Omit<InputHTMLAttributes<HTMLSelectElement>, 'children'> {
+interface SelectProps extends Omit<SelectHTMLAttributes<HTMLSelectElement>, 'children'> {
   label?: string;
   error?: string;
   hint?: string;
@@ -181,10 +176,7 @@ interface SelectProps extends Omit<InputHTMLAttributes<HTMLSelectElement>, 'chil
 }
 
 const Select = forwardRef<HTMLSelectElement, SelectProps>(
-  (
-    { className, label, error, hint, options, placeholder, selectSize = 'md', id, ...props },
-    ref
-  ) => {
+  ({ className, label, error, hint, options, placeholder, selectSize = 'md', id, required, disabled, ...props }, ref) => {
     const inputId = id || label?.toLowerCase().replace(/\s+/g, '-');
 
     const sizeStyles = {
@@ -196,25 +188,27 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
     return (
       <div className="w-full space-y-1.5">
         {label && (
-          <label htmlFor={inputId} className="block text-sm font-medium text-slate-700">
+          <label htmlFor={inputId} className="block text-sm font-medium text-[var(--foreground)]">
             {label}
-            {props.required && <span className="text-red-500 ml-1">*</span>}
+            {required && <span className="text-[var(--error)] ml-1">*</span>}
           </label>
         )}
 
         <select
           ref={ref}
           id={inputId}
+          required={required}
+          disabled={disabled}
           className={cn(
             'flex w-full appearance-none bg-no-repeat bg-right-12',
-            'bg-white border border-slate-200 rounded-xl',
-            'text-slate-900 cursor-pointer',
+            'bg-[var(--card)] border border-[var(--border)] rounded-xl',
+            'text-[var(--foreground)] cursor-pointer',
             sizeStyles[selectSize],
             'transition-all duration-150',
             error
-              ? 'border-red-500 focus:ring-4 focus:ring-red-500/10'
-              : 'hover:border-slate-300 focus:ring-4 focus:ring-blue-500/10',
-            props.disabled && 'bg-slate-50 cursor-not-allowed opacity-60',
+              ? 'border-[var(--error)] focus:ring-4 focus:ring-[var(--error)]/10'
+              : 'hover:border-[var(--border-hover)] focus:ring-4 focus:ring-[var(--primary)]/10 focus:border-[var(--primary)]',
+            disabled && 'bg-[var(--muted)] cursor-not-allowed opacity-60',
             className
           )}
           {...props}
@@ -231,8 +225,8 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
           ))}
         </select>
 
-        {error && <p className="text-sm text-red-500">{error}</p>}
-        {hint && !error && <p className="text-sm text-slate-500">{hint}</p>}
+        {error && <p className="text-sm text-[var(--error)]">{error}</p>}
+        {hint && !error && <p className="text-sm text-[var(--muted-foreground)]">{hint}</p>}
       </div>
     );
   }
