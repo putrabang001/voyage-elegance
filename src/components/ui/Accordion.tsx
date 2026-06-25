@@ -6,86 +6,51 @@ import { cn } from '@/lib/utils';
 
 interface AccordionItemProps {
   title: string | ReactNode;
-  content: string | ReactNode;
-  isOpen?: boolean;
-  onToggle?: () => void;
+  children: ReactNode;
+  defaultOpen?: boolean;
 }
 
-export function AccordionItem({
-  title,
-  content,
-  isOpen = false,
-  onToggle,
-}: AccordionItemProps) {
+function AccordionItem({ title, children, defaultOpen = false }: AccordionItemProps) {
+  const [isOpen, setIsOpen] = useState(defaultOpen);
+
   return (
-    <div className="border-b border-ocean-700/50">
+    <div className="border-b border-slate-100 last:border-0">
       <button
-        onClick={onToggle}
-        className="w-full flex items-center justify-between py-4 text-left transition-colors hover:text-ocean-300"
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between py-4 text-left"
       >
-        <span className="font-medium text-white pr-4">{title}</span>
+        <span className="font-medium text-slate-900 pr-4">{title}</span>
         <ChevronDown
           className={cn(
-            'w-5 h-5 text-ocean-400 transition-transform duration-300 flex-shrink-0',
+            'w-5 h-5 text-slate-400 flex-shrink-0 transition-transform',
             isOpen && 'rotate-180'
           )}
         />
       </button>
       <div
         className={cn(
-          'overflow-hidden transition-all duration-300',
-          isOpen ? 'max-h-[1000px] pb-4' : 'max-h-0'
+          'overflow-hidden transition-all duration-200',
+          isOpen ? 'max-h-96 pb-4' : 'max-h-0'
         )}
       >
-        <div className="text-gray-400 leading-relaxed">{content}</div>
+        <div className="text-slate-600 leading-relaxed">{children}</div>
       </div>
     </div>
   );
 }
 
 interface AccordionProps {
-  items: { title: string | ReactNode; content: string | ReactNode }[];
-  defaultOpen?: number | number[];
-  allowMultiple?: boolean;
+  items: Array<{ title: string | ReactNode; content: ReactNode }>;
   className?: string;
 }
 
-export function Accordion({
-  items,
-  defaultOpen,
-  allowMultiple = false,
-  className,
-}: AccordionProps) {
-  const [openItems, setOpenItems] = useState<number[]>(() => {
-    if (defaultOpen === undefined) return [];
-    if (typeof defaultOpen === 'number') return [defaultOpen];
-    return defaultOpen;
-  });
-
-  const handleToggle = (index: number) => {
-    if (allowMultiple) {
-      setOpenItems((prev) =>
-        prev.includes(index)
-          ? prev.filter((i) => i !== index)
-          : [...prev, index]
-      );
-    } else {
-      setOpenItems((prev) =>
-        prev.includes(index) ? [] : [index]
-      );
-    }
-  };
-
+export function Accordion({ items, className }: AccordionProps) {
   return (
     <div className={cn('', className)}>
-      {items.map((item, index) => (
-        <AccordionItem
-          key={index}
-          title={item.title}
-          content={item.content}
-          isOpen={openItems.includes(index)}
-          onToggle={() => handleToggle(index)}
-        />
+      {items.map((item, i) => (
+        <AccordionItem key={i} title={item.title}>
+          {item.content}
+        </AccordionItem>
       ))}
     </div>
   );

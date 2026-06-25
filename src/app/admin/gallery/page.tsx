@@ -2,8 +2,64 @@
 
 import { useState } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import { Plus, Upload, Trash2, Pencil, Star, X } from 'lucide-react';
-import { Button, Badge } from '@/components/ui';
+import { cn } from '@/lib/utils';
+
+// Button Component
+function Button({ children, variant = 'default', size = 'md', leftIcon, disabled, className, onClick }: {
+  children: React.ReactNode;
+  variant?: 'default' | 'primary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  leftIcon?: React.ReactNode;
+  disabled?: boolean;
+  className?: string;
+  onClick?: () => void;
+}) {
+  const variantClasses = {
+    default: 'bg-[var(--muted)] hover:bg-[var(--muted-foreground)]/20 text-[var(--foreground)]',
+    primary: 'bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] text-white shadow-lg shadow-[var(--primary)]/20 hover:shadow-xl',
+    outline: 'border border-[var(--border)] hover:bg-[var(--muted)] text-[var(--foreground)]',
+  };
+
+  const sizeClasses = {
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2 text-sm',
+    lg: 'px-6 py-3 text-base',
+  };
+
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={cn(
+        'inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all',
+        variantClasses[variant],
+        sizeClasses[size],
+        disabled && 'opacity-50 cursor-not-allowed',
+        className
+      )}
+    >
+      {leftIcon}
+      {children}
+    </button>
+  );
+}
+
+// Badge Component
+function Badge({ children, variant = 'default' }: { children: React.ReactNode; variant?: 'default' | 'ocean' | 'coral' }) {
+  const variantClasses = {
+    default: 'bg-[var(--muted)] text-[var(--muted-foreground)]',
+    ocean: 'bg-[var(--accent)]/10 text-[var(--accent)]',
+    coral: 'bg-orange-500/10 text-orange-500',
+  };
+
+  return (
+    <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium', variantClasses[variant])}>
+      {children}
+    </span>
+  );
+}
 
 const galleryImages = [
   { id: '1', url: 'https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=200&q=80', category: 'beach', featured: true },
@@ -19,6 +75,7 @@ const categories = [
   { value: 'beach', label: 'Beach' },
   { value: 'underwater', label: 'Underwater' },
   { value: 'sunset', label: 'Sunset' },
+  { value: 'wildlife', label: 'Wildlife' },
 ];
 
 export default function AdminGalleryPage() {
@@ -33,12 +90,14 @@ export default function AdminGalleryPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Gallery</h1>
-          <p className="text-gray-500">Manage your image gallery</p>
+          <h1 className="text-2xl font-bold text-[var(--foreground)]">Gallery</h1>
+          <p className="text-[var(--muted-foreground)]">Manage your image gallery</p>
         </div>
-        <Button leftIcon={<Upload className="w-5 h-5" />}>
-          Upload Images
-        </Button>
+        <Link href="/admin/gallery/new">
+          <Button variant="primary" leftIcon={<Upload className="w-5 h-5" />}>
+            Upload Images
+          </Button>
+        </Link>
       </div>
 
       {/* Filters */}
@@ -49,20 +108,13 @@ export default function AdminGalleryPage() {
             onClick={() => setSelectedCategory(cat.value)}
             className={`px-4 py-2 rounded-lg text-sm font-medium transition-all ${
               selectedCategory === cat.value
-                ? 'bg-ocean-600 text-white'
-                : 'bg-white text-gray-600 border border-gray-200 hover:bg-gray-50'
+                ? 'bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] text-white'
+                : 'bg-[var(--card)] text-[var(--muted-foreground)] border border-[var(--border)] hover:bg-[var(--muted)]'
             }`}
           >
             {cat.label}
           </button>
         ))}
-      </div>
-
-      {/* Upload Area */}
-      <div className="border-2 border-dashed border-gray-300 rounded-xl p-8 text-center hover:border-ocean-400 transition-colors cursor-pointer">
-        <Upload className="w-12 h-12 text-gray-400 mx-auto mb-4" />
-        <p className="text-gray-600 font-medium">Drop images here or click to upload</p>
-        <p className="text-gray-400 text-sm mt-1">PNG, JPG, WEBP up to 10MB</p>
       </div>
 
       {/* Gallery Grid */}
@@ -83,11 +135,11 @@ export default function AdminGalleryPage() {
                 </div>
               )}
               <div className="absolute bottom-2 right-2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
-                <button className="p-2 bg-white rounded-lg hover:bg-gray-100">
-                  <Pencil className="w-4 h-4 text-gray-600" />
+                <button className="p-2 bg-white/90 rounded-lg hover:bg-white">
+                  <Pencil className="w-4 h-4 text-[var(--foreground)]" />
                 </button>
-                <button className="p-2 bg-white rounded-lg hover:bg-red-50">
-                  <Trash2 className="w-4 h-4 text-red-600" />
+                <button className="p-2 bg-white/90 rounded-lg hover:bg-red-50">
+                  <Trash2 className="w-4 h-4 text-red-500" />
                 </button>
               </div>
             </div>

@@ -4,11 +4,12 @@ import { forwardRef, ButtonHTMLAttributes, ReactNode } from 'react';
 import { cn } from '@/lib/utils';
 
 export interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger';
-  size?: 'sm' | 'md' | 'lg';
+  variant?: 'primary' | 'secondary' | 'outline' | 'ghost' | 'danger' | 'success';
+  size?: 'sm' | 'md' | 'lg' | 'icon';
   isLoading?: boolean;
   leftIcon?: ReactNode;
   rightIcon?: ReactNode;
+  children?: ReactNode;
 }
 
 const Button = forwardRef<HTMLButtonElement, ButtonProps>(
@@ -26,44 +27,110 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const baseStyles =
-      'inline-flex items-center justify-center gap-2 font-medium rounded-xl transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ocean-400 focus-visible:ring-offset-2 focus-visible:ring-offset-ocean-900 disabled:opacity-50 disabled:cursor-not-allowed';
-
-    const variants = {
-      primary:
-        'bg-coral-500 text-white hover:bg-coral-600 active:scale-[0.98] shadow-md hover:shadow-lg hover:shadow-coral-500/25',
-      secondary:
-        'bg-ocean-600 text-white hover:bg-ocean-500 active:scale-[0.98]',
-      outline:
-        'bg-transparent border-2 border-ocean-400 text-ocean-300 hover:bg-ocean-800 hover:border-ocean-300',
-      ghost:
-        'bg-transparent text-gray-300 hover:bg-white/10 hover:text-white',
-      danger:
-        'bg-red-500/10 text-red-400 border border-red-500/30 hover:bg-red-500/20',
+    // Size styles
+    const sizeStyles = {
+      sm: 'h-8 px-3 text-xs gap-1.5 rounded-lg',
+      md: 'h-10 px-4 text-sm gap-2 rounded-xl',
+      lg: 'h-12 px-6 text-base gap-2.5 rounded-xl',
+      icon: 'h-10 w-10 rounded-xl',
     };
 
-    const sizes = {
-      sm: 'px-3 py-1.5 text-sm',
-      md: 'px-5 py-2.5 text-base',
-      lg: 'px-8 py-3.5 text-lg',
+    // Variant styles
+    const variantStyles = {
+      primary: [
+        'bg-blue-600 text-white',
+        'hover:bg-blue-700 active:bg-blue-800',
+        'shadow-sm shadow-blue-600/25',
+        'hover:shadow-md hover:shadow-blue-600/30',
+        'active:scale-[0.98]',
+      ].join(' '),
+      secondary: [
+        'bg-slate-900 text-white',
+        'hover:bg-slate-800 active:bg-slate-700',
+        'shadow-sm shadow-slate-900/25',
+        'hover:shadow-md hover:shadow-slate-900/30',
+        'active:scale-[0.98]',
+      ].join(' '),
+      outline: [
+        'bg-transparent border border-slate-200 text-slate-700',
+        'hover:bg-slate-50 hover:border-slate-300',
+        'active:bg-slate-100',
+      ].join(' '),
+      ghost: [
+        'bg-transparent text-slate-600',
+        'hover:bg-slate-100 hover:text-slate-900',
+        'active:bg-slate-200',
+      ].join(' '),
+      danger: [
+        'bg-red-600 text-white',
+        'hover:bg-red-700 active:bg-red-800',
+        'shadow-sm shadow-red-600/25',
+        'hover:shadow-md hover:shadow-red-600/30',
+        'active:scale-[0.98]',
+      ].join(' '),
+      success: [
+        'bg-emerald-600 text-white',
+        'hover:bg-emerald-700 active:bg-emerald-800',
+        'shadow-sm shadow-emerald-600/25',
+        'hover:shadow-md shadow-emerald-600/30',
+        'active:scale-[0.98]',
+      ].join(' '),
     };
 
     return (
       <button
         ref={ref}
-        className={cn(baseStyles, variants[variant], sizes[size], className)}
         disabled={disabled || isLoading}
+        className={cn(
+          // Base styles
+          [
+            'inline-flex items-center justify-center',
+            'font-medium',
+            'transition-all duration-150',
+            'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2',
+            'disabled:pointer-events-none disabled:opacity-50',
+          ].join(' '),
+
+          // Size
+          sizeStyles[size],
+
+          // Variant
+          variantStyles[variant],
+
+          // Custom className
+          className
+        )}
         {...props}
       >
         {isLoading ? (
           <>
-            <span className="loading-spinner" />
+            {/* Spinner */}
+            <svg
+              className="animate-spin h-4 w-4"
+              xmlns="http://www.w3.org/2000/svg"
+              fill="none"
+              viewBox="0 0 24 24"
+            >
+              <circle
+                className="opacity-25"
+                cx="12"
+                cy="12"
+                r="10"
+                stroke="currentColor"
+                strokeWidth="4"
+              />
+              <path
+                className="opacity-75"
+                fill="currentColor"
+                d="M4 12a8 8 0 018 8 8 8 0 000-16 8 8 0 018 8 8 8 0 000-16 8 8 0 018 8 8 8 0 000-16 8 8 0 01-16-16 8 8 0 0116 8 8 8 0 01-16 8 8 8 0 0116 8 8 8 0 01-16 8 8 8 0 0116-8z"
+              />
+            </svg>
             <span>Loading...</span>
           </>
         ) : (
           <>
             {leftIcon && <span className="flex-shrink-0">{leftIcon}</span>}
-            {children}
+            {children && <span>{children}</span>}
             {rightIcon && <span className="flex-shrink-0">{rightIcon}</span>}
           </>
         )}

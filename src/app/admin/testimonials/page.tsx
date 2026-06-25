@@ -1,9 +1,86 @@
 'use client';
 
 import { useState } from 'react';
+import Link from 'next/link';
 import Image from 'next/image';
-import { Plus, Pencil, Trash2, Star } from 'lucide-react';
-import { Button, Badge } from '@/components/ui';
+import { Plus, Pencil, Trash2, Star, User } from 'lucide-react';
+import { cn } from '@/lib/utils';
+
+// Avatar Component
+function Avatar({ src, name, size = 'sm' }: { src?: string; name: string; size?: 'sm' | 'md' | 'lg' }) {
+  const sizeClasses = {
+    sm: 'w-10 h-10',
+    md: 'w-12 h-12',
+    lg: 'w-16 h-16',
+  };
+
+  if (src) {
+    return (
+      <div className={cn('relative rounded-full overflow-hidden', sizeClasses[size])}>
+        <Image src={src} alt={name} fill className="object-cover" />
+      </div>
+    );
+  }
+
+  return (
+    <div className={cn('rounded-full bg-gradient-to-br from-[var(--primary)] to-[var(--accent)] flex items-center justify-center text-white font-medium', sizeClasses[size])}>
+      <User className="w-5 h-5" />
+    </div>
+  );
+}
+
+// Badge Component
+function Badge({ children, variant = 'default' }: { children: React.ReactNode; variant?: 'default' | 'success' | 'warning' | 'coral' }) {
+  const variantClasses = {
+    default: 'bg-[var(--muted)] text-[var(--muted-foreground)]',
+    success: 'bg-emerald-500/10 text-emerald-500',
+    warning: 'bg-amber-500/10 text-amber-500',
+    coral: 'bg-orange-500/10 text-orange-500',
+  };
+
+  return (
+    <span className={cn('inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium', variantClasses[variant])}>
+      {children}
+    </span>
+  );
+}
+
+// Button Component
+function Button({ children, variant = 'default', size = 'md', leftIcon, className, onClick }: {
+  children: React.ReactNode;
+  variant?: 'default' | 'primary' | 'outline';
+  size?: 'sm' | 'md' | 'lg';
+  leftIcon?: React.ReactNode;
+  className?: string;
+  onClick?: () => void;
+}) {
+  const variantClasses = {
+    default: 'bg-[var(--muted)] hover:bg-[var(--muted-foreground)]/20 text-[var(--foreground)]',
+    primary: 'bg-gradient-to-r from-[var(--primary)] to-[var(--accent)] text-white shadow-lg shadow-[var(--primary)]/20',
+    outline: 'border border-[var(--border)] hover:bg-[var(--muted)] text-[var(--foreground)]',
+  };
+
+  const sizeClasses = {
+    sm: 'px-3 py-1.5 text-sm',
+    md: 'px-4 py-2 text-sm',
+    lg: 'px-6 py-3 text-base',
+  };
+
+  return (
+    <button
+      onClick={onClick}
+      className={cn(
+        'inline-flex items-center justify-center gap-2 rounded-xl font-medium transition-all',
+        variantClasses[variant],
+        sizeClasses[size],
+        className
+      )}
+    >
+      {leftIcon}
+      {children}
+    </button>
+  );
+}
 
 const testimonials = [
   {
@@ -41,46 +118,46 @@ export default function AdminTestimonialsPage() {
       {/* Header */}
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
         <div>
-          <h1 className="text-2xl font-bold text-gray-900">Testimonials</h1>
-          <p className="text-gray-500">Manage customer reviews and testimonials</p>
+          <h1 className="text-2xl font-bold text-[var(--foreground)]">Testimonials</h1>
+          <p className="text-[var(--muted-foreground)]">Manage customer reviews and testimonials</p>
         </div>
-        <Button leftIcon={<Plus className="w-5 h-5" />}>
-          Add Testimonial
-        </Button>
+        <Link href="/admin/testimonials/new">
+          <Button variant="primary" leftIcon={<Plus className="w-5 h-5" />}>
+            Add Testimonial
+          </Button>
+        </Link>
       </div>
 
       {/* Testimonials Grid */}
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {testimonials.map((testimonial) => (
-          <div key={testimonial.id} className="bg-white rounded-xl border border-gray-200 overflow-hidden">
+          <div key={testimonial.id} className="bg-[var(--card)] rounded-2xl border border-[var(--border)] overflow-hidden">
             <div className="p-6">
               <div className="flex items-center gap-1 mb-4">
                 {Array.from({ length: testimonial.rating }).map((_, i) => (
                   <Star key={i} className="w-5 h-5 text-yellow-400 fill-yellow-400" />
                 ))}
               </div>
-              <p className="text-gray-600 mb-6">&ldquo;{testimonial.quote}&rdquo;</p>
+              <p className="text-[var(--muted-foreground)] mb-6">&ldquo;{testimonial.quote}&rdquo;</p>
               <div className="flex items-center gap-4">
-                <div className="relative w-12 h-12 rounded-full overflow-hidden">
-                  <Image src={testimonial.avatar} alt={testimonial.name} fill className="object-cover" />
-                </div>
+                <Avatar src={testimonial.avatar} name={testimonial.name} />
                 <div>
-                  <p className="font-medium text-gray-900">{testimonial.name}</p>
-                  <p className="text-sm text-gray-500">{testimonial.location}</p>
+                  <p className="font-medium text-[var(--foreground)]">{testimonial.name}</p>
+                  <p className="text-sm text-[var(--muted-foreground)]">{testimonial.location}</p>
                 </div>
               </div>
             </div>
-            <div className="px-6 py-3 bg-gray-50 border-t border-gray-200 flex items-center justify-between">
+            <div className="px-6 py-3 bg-[var(--muted)] border-t border-[var(--border)] flex items-center justify-between">
               {testimonial.featured ? (
                 <Badge variant="coral"><Star className="w-3 h-3 mr-1" />Featured</Badge>
               ) : (
-                <span className="text-sm text-gray-400">Regular</span>
+                <span className="text-sm text-[var(--muted-foreground)]">Regular</span>
               )}
               <div className="flex gap-1">
-                <button className="p-2 text-gray-400 hover:text-ocean-600 hover:bg-ocean-50 rounded-lg">
+                <Link href={`/admin/testimonials/${testimonial.id}/edit`} className="p-2 text-[var(--muted-foreground)] hover:text-[var(--primary)] hover:bg-[var(--primary-soft)] rounded-lg transition-colors">
                   <Pencil className="w-4 h-4" />
-                </button>
-                <button className="p-2 text-gray-400 hover:text-red-600 hover:bg-red-50 rounded-lg">
+                </Link>
+                <button className="p-2 text-[var(--muted-foreground)] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors">
                   <Trash2 className="w-4 h-4" />
                 </button>
               </div>

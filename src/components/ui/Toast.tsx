@@ -1,8 +1,18 @@
 'use client';
 
-import { createContext, useContext, useState, useCallback, ReactNode } from 'react';
+import {
+  createContext,
+  useContext,
+  useState,
+  useCallback,
+  ReactNode,
+} from 'react';
 import { X, CheckCircle, AlertCircle, AlertTriangle, Info } from 'lucide-react';
 import { cn } from '@/lib/utils';
+
+// ============================================
+// TOAST CONTEXT
+// ============================================
 
 type ToastType = 'success' | 'error' | 'warning' | 'info';
 
@@ -20,14 +30,18 @@ interface ToastContextType {
 
 const ToastContext = createContext<ToastContextType | undefined>(undefined);
 
+// ============================================
+// TOAST PROVIDER
+// ============================================
+
 export function ToastProvider({ children }: { children: ReactNode }) {
   const [toasts, setToasts] = useState<Toast[]>([]);
 
   const addToast = useCallback((message: string, type: ToastType = 'info') => {
-    const id = Math.random().toString(36).substring(7);
+    const id = Math.random().toString(36).substring(2, 9);
     setToasts((prev) => [...prev, { id, message, type }]);
 
-    // Auto-remove after 5 seconds
+    // Auto-dismiss after 5 seconds
     setTimeout(() => {
       setToasts((prev) => prev.filter((t) => t.id !== id));
     }, 5000);
@@ -53,11 +67,17 @@ export function useToast() {
   return context;
 }
 
+// ============================================
+// TOAST CONTAINER
+// ============================================
+
 function ToastContainer() {
   const { toasts, removeToast } = useToast();
 
+  if (toasts.length === 0) return null;
+
   return (
-    <div className="fixed bottom-4 right-4 z-[100] flex flex-col gap-2 max-w-sm">
+    <div className="fixed bottom-6 right-6 z-50 flex flex-col gap-3 max-w-sm w-full">
       {toasts.map((toast) => (
         <ToastItem key={toast.id} toast={toast} onClose={() => removeToast(toast.id)} />
       ))}
@@ -65,34 +85,66 @@ function ToastContainer() {
   );
 }
 
-function ToastItem({ toast, onClose }: { toast: Toast; onClose: () => void }) {
-  const icons = {
-    success: <CheckCircle className="w-5 h-5 text-green-400" />,
-    error: <AlertCircle className="w-5 h-5 text-red-400" />,
-    warning: <AlertTriangle className="w-5 h-5 text-yellow-400" />,
-    info: <Info className="w-5 h-5 text-blue-400" />,
+// ============================================
+// TOAST ITEM
+// ============================================
+
+interface ToastItemProps {
+  toast: Toast;
+  onClose: () => void;
+}
+
+function ToastItem({ toast, onClose }: ToastItemProps) {
+  // Icon configuration
+  const iconConfig = {
+    success: {
+      icon: CheckCircle,
+      className: 'text-emerald-500 bg-emerald-100',
+    },
+    error: {
+      icon: AlertCircle,
+      className: 'text-red-500 bg-red-100',
+    },
+    warning: {
+      icon: AlertTriangle,
+      className: 'text-amber-500 bg-amber-100',
+    },
+    info: {
+      icon: Info,
+      className: 'text-blue-500 bg-blue-100',
+    },
   };
 
-  const backgrounds = {
-    success: 'bg-green-500/10 border-green-500/30',
-    error: 'bg-red-500/10 border-red-500/30',
-    warning: 'bg-yellow-500/10 border-yellow-500/30',
-    info: 'bg-blue-500/10 border-blue-500/30',
-  };
+  const config = iconConfig[toast.type];
 
   return (
     <div
       className={cn(
-        'flex items-start gap-3 p-4 rounded-xl border backdrop-blur-sm animate-slide-in-right',
-        'bg-ocean-800/95 border-ocean-700/50',
-        backgrounds[toast.type]
+        // Base
+        'relative flex items-start gap-3 p-4 rounded-xl',
+        'bg-white border border-slate-200 shadow-lg shadow-slate-900/10',
+        'animate-in slide-in-from-right-5 fade-in duration-200'
       )}
     >
-      {icons[toast.type]}
-      <p className="flex-1 text-sm text-white">{toast.message}</p>
+      {/* Icon */}
+      <div
+        className={cn(
+          'flex-shrink-0 w-8 h-8 rounded-lg flex items-center justify-center',
+          config.className
+        )}
+      >
+        <config.icon className="w-4 h-4" />
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 min-w-0">
+        <p className="text-sm font-medium text-slate-900">{toast.message}</p>
+      </div>
+
+      {/* Close button */}
       <button
         onClick={onClose}
-        className="p-1 text-gray-400 hover:text-white transition-colors"
+        className="flex-shrink-0 p-1 text-slate-400 hover:text-slate-600 transition-colors"
       >
         <X className="w-4 h-4" />
       </button>

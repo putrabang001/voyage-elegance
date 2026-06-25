@@ -2,16 +2,20 @@ export { Button } from './Button';
 export type { ButtonProps } from './Button';
 
 export { Input, Textarea, Select } from './Input';
-export type { InputProps, TextareaProps, SelectProps } from './Input';
+export type { InputProps, TextareaProps, SelectProps, SelectOption } from './Input';
 
-export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter } from './Card';
+export { Badge, StatusBadge, CountBadge } from './Badge';
+export type { BadgeProps, StatusBadgeProps, CountBadgeProps } from './Badge';
 
-export { Badge, StatusBadge } from './Badge';
+export { Card, CardHeader, CardTitle, CardDescription, CardContent, CardFooter, StatCard } from './Card';
+export type { CardProps, StatCardProps } from './Card';
 
-export { Accordion, AccordionItem } from './Accordion';
+export { Avatar, AvatarGroup } from './Avatar';
+export type { AvatarProps, AvatarGroupProps } from './Avatar';
 
-export { Modal, ConfirmModal } from './Modal';
+export { Skeleton, SkeletonText, SkeletonAvatar, SkeletonCard, SkeletonTableRow, SkeletonChart, SkeletonList } from './Skeleton';
+export type { SkeletonProps, SkeletonCardProps } from './Skeleton';
 
-export { Skeleton, SkeletonText, SkeletonCard, SkeletonHero, SkeletonImageGallery } from './Skeleton';
+export { Accordion } from './Accordion';
 
 export { ToastProvider, useToast } from './Toast';
