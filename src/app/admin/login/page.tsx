@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Eye, EyeOff, LogIn } from 'lucide-react';
+import { Eye, EyeOff, LogIn, Ship } from 'lucide-react';
 import { Button, Input } from '@/components/ui';
 
 const loginSchema = z.object({
@@ -31,7 +31,7 @@ export default function AdminLoginPage() {
   const onSubmit = async (data: LoginFormData) => {
     setError('');
 
-    // Demo login - in production, this would call the API
+    // Demo login
     if (data.email === 'admin@voyageelegance.com' && data.password === 'admin123') {
       localStorage.setItem('adminToken', 'demo-token');
       router.push('/admin/dashboard');
@@ -41,62 +41,70 @@ export default function AdminLoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-ocean-900 p-4">
-      <div className="w-full max-w-md">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-gray-50 to-gray-100 p-4">
+      {/* Background Pattern */}
+      <div className="absolute inset-0 overflow-hidden">
+        <div className="absolute -top-1/2 -right-1/2 w-full h-full bg-gradient-to-br from-ocean-500/10 to-coral-500/10 rounded-full blur-3xl" />
+        <div className="absolute -bottom-1/2 -left-1/2 w-full h-full bg-gradient-to-tr from-ocean-500/10 to-purple-500/10 rounded-full blur-3xl" />
+      </div>
+
+      <div className="relative w-full max-w-md">
         {/* Logo */}
         <div className="text-center mb-8">
-          <div className="inline-flex items-center gap-3 mb-4">
-            <div className="relative w-12 h-12">
-              <svg viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-full h-full">
-                <circle cx="20" cy="20" r="18" stroke="currentColor" strokeWidth="2" className="text-ocean-400" />
-                <path
-                  d="M10 20C10 20 15 14 20 14C25 14 30 20 30 20C30 20 25 26 20 26C15 26 10 20 10 20Z"
-                  fill="currentColor"
-                  className="text-coral-400"
-                />
-                <circle cx="20" cy="20" r="3" fill="currentColor" className="text-ocean-300" />
-              </svg>
-            </div>
-            <span className="text-2xl font-bold text-white">Voyage Elegance</span>
+          <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-ocean-500 to-ocean-600 shadow-xl shadow-ocean-500/30 mb-4">
+            <Ship className="w-8 h-8 text-white" />
           </div>
-          <p className="text-gray-400">Admin Dashboard</p>
+          <h1 className="text-3xl font-bold text-gray-900">Voyage Elegance</h1>
+          <p className="text-gray-500 mt-1">Admin Dashboard</p>
         </div>
 
         {/* Login Form */}
-        <div className="bg-ocean-800 rounded-2xl border border-ocean-700 p-8">
-          <h1 className="text-2xl font-bold text-white mb-2">Welcome Back</h1>
-          <p className="text-gray-400 mb-6">Sign in to access the admin dashboard</p>
+        <div className="bg-white rounded-3xl shadow-xl shadow-gray-200/50 p-8">
+          <div className="mb-6">
+            <h2 className="text-xl font-bold text-gray-900">Welcome back</h2>
+            <p className="text-gray-500 text-sm mt-1">Sign in to access your dashboard</p>
+          </div>
 
-          <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+          <form onSubmit={handleSubmit(onSubmit)} className="space-y-5">
             {error && (
-              <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl text-red-400 text-sm">
+              <div className="p-4 bg-red-50 border border-red-200 rounded-xl text-red-600 text-sm">
                 {error}
               </div>
             )}
 
-            <Input
-              label="Email Address"
-              type="email"
-              placeholder="admin@voyageelegance.com"
-              error={errors.email?.message}
-              {...register('email')}
-            />
-
-            <div className="relative">
-              <Input
-                label="Password"
-                type={showPassword ? 'text' : 'password'}
-                placeholder="Enter your password"
-                error={errors.password?.message}
-                {...register('password')}
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Email Address</label>
+              <input
+                type="email"
+                placeholder="admin@voyageelegance.com"
+                {...register('email')}
+                className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-all"
               />
-              <button
-                type="button"
-                onClick={() => setShowPassword(!showPassword)}
-                className="absolute right-3 top-9 text-gray-400 hover:text-white"
-              >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
-              </button>
+              {errors.email && (
+                <p className="mt-2 text-sm text-red-500">{errors.email.message}</p>
+              )}
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-700 mb-2">Password</label>
+              <div className="relative">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Enter your password"
+                  {...register('password')}
+                  className="w-full px-4 py-3 bg-gray-50 border border-gray-200 rounded-xl text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-ocean-500 focus:border-transparent transition-all pr-12"
+                />
+                <button
+                  type="button"
+                  onClick={() => setShowPassword(!showPassword)}
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-gray-600"
+                >
+                  {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                </button>
+              </div>
+              {errors.password && (
+                <p className="mt-2 text-sm text-red-500">{errors.password.message}</p>
+              )}
             </div>
 
             <Button
@@ -104,22 +112,23 @@ export default function AdminLoginPage() {
               className="w-full"
               size="lg"
               isLoading={isSubmitting}
-              leftIcon={<LogIn className="w-5 h-5" />}
             >
+              <LogIn className="w-5 h-5" />
               Sign In
             </Button>
           </form>
 
-          <div className="mt-6 pt-6 border-t border-ocean-700">
-            <p className="text-gray-500 text-sm text-center">
-              Demo credentials: admin@voyageelegance.com / admin123
+          {/* Demo Credentials */}
+          <div className="mt-6 p-4 bg-ocean-50 rounded-xl">
+            <p className="text-sm text-ocean-700 text-center">
+              <span className="font-medium">Demo:</span> admin@voyageelegance.com / admin123
             </p>
           </div>
         </div>
 
         {/* Back to Site */}
         <div className="text-center mt-6">
-          <a href="/en" className="text-gray-400 hover:text-white text-sm transition-colors">
+          <a href="/en" className="inline-flex items-center gap-2 text-gray-500 hover:text-ocean-600 transition-colors">
             ← Back to website
           </a>
         </div>

@@ -19,6 +19,7 @@ import {
   Activity,
   Menu,
   X,
+  Bell,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -51,55 +52,59 @@ export default function AdminLayout({
   };
 
   return (
-    <div className="min-h-screen bg-gray-100">
+    <div className="min-h-screen bg-gray-50">
       {/* Mobile Header */}
-      <div className="lg:hidden fixed top-0 left-0 right-0 z-40 h-16 bg-ocean-900 border-b border-ocean-700 flex items-center justify-between px-4">
-        <button
-          onClick={() => setMobileOpen(true)}
-          className="p-2 text-white/80 hover:text-white"
-        >
-          <Menu className="w-6 h-6" />
-        </button>
-        <span className="text-white font-medium">Admin Dashboard</span>
-        <button
-          onClick={handleLogout}
-          className="p-2 text-white/80 hover:text-white"
-        >
-          <LogOut className="w-6 h-6" />
-        </button>
-      </div>
+      <header className="lg:hidden fixed top-0 left-0 right-0 z-40 h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 shadow-sm">
+        <div className="flex items-center gap-3">
+          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-ocean-500 to-ocean-600 flex items-center justify-center">
+            <Ship className="w-5 h-5 text-white" />
+          </div>
+          <span className="font-semibold text-gray-900">Admin</span>
+        </div>
+        <div className="flex items-center gap-2">
+          <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg">
+            <Bell className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => setMobileOpen(true)}
+            className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+        </div>
+      </header>
 
       {/* Sidebar - Desktop */}
       <aside
         className={cn(
-          'fixed top-0 left-0 h-full bg-ocean-900 border-r border-ocean-700 z-30 transition-all duration-300 hidden lg:block',
+          'fixed top-0 left-0 h-full bg-white border-r border-gray-200 z-30 transition-all duration-300 hidden lg:block shadow-sm',
           collapsed ? 'w-20' : 'w-64'
         )}
       >
         {/* Logo */}
-        <div className="h-16 flex items-center justify-between px-4 border-b border-ocean-700">
+        <div className="h-16 flex items-center justify-between px-4 border-b border-gray-100">
           {!collapsed && (
-            <Link href="/admin/dashboard" className="flex items-center gap-2">
-              <div className="relative w-8 h-8">
-                <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
-                  <circle cx="20" cy="20" r="18" stroke="currentColor" strokeWidth="2" className="text-ocean-400" />
-                  <path d="M10 20C10 20 15 14 20 14C25 14 30 20 30 20C30 20 25 26 20 26C15 26 10 20 10 20Z" fill="currentColor" className="text-coral-400" />
-                  <circle cx="20" cy="20" r="3" fill="currentColor" className="text-ocean-300" />
-                </svg>
+            <Link href="/admin/dashboard" className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ocean-500 to-ocean-600 flex items-center justify-center shadow-lg shadow-ocean-500/20">
+                <Ship className="w-5 h-5 text-white" />
               </div>
-              <span className="text-white font-bold">Admin</span>
+              <div>
+                <span className="font-bold text-gray-900 block">Voyage</span>
+                <span className="text-xs text-ocean-600">Admin Panel</span>
+              </div>
             </Link>
           )}
-          <button
-            onClick={() => setCollapsed(!collapsed)}
-            className="p-2 text-white/60 hover:text-white"
-          >
-            {collapsed ? <ChevronRight className="w-5 h-5" /> : <ChevronLeft className="w-5 h-5" />}
-          </button>
+          {collapsed && (
+            <Link href="/admin/dashboard" className="mx-auto">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ocean-500 to-ocean-600 flex items-center justify-center shadow-lg shadow-ocean-500/20">
+                <Ship className="w-5 h-5 text-white" />
+              </div>
+            </Link>
+          )}
         </div>
 
         {/* Navigation */}
-        <nav className="p-4 space-y-1">
+        <nav className="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-128px)]">
           {navigation.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
             return (
@@ -107,62 +112,73 @@ export default function AdminLayout({
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
+                  'flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200',
                   isActive
-                    ? 'bg-ocean-800 text-coral-400'
-                    : 'text-white/70 hover:text-white hover:bg-ocean-800/50'
+                    ? 'bg-gradient-to-r from-ocean-500 to-ocean-600 text-white shadow-lg shadow-ocean-500/20'
+                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                 )}
               >
                 <item.icon className={cn('w-5 h-5 flex-shrink-0', collapsed && 'mx-auto')} />
-                {!collapsed && <span>{item.name}</span>}
+                {!collapsed && <span className="font-medium">{item.name}</span>}
               </Link>
             );
           })}
         </nav>
 
-        {/* Logout */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 border-t border-ocean-700">
+        {/* Bottom */}
+        <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-gray-100 bg-white">
           <button
             onClick={handleLogout}
             className={cn(
-              'flex items-center gap-3 px-3 py-2.5 w-full rounded-lg text-white/70 hover:text-white hover:bg-ocean-800/50 transition-colors',
+              'flex items-center gap-3 px-3 py-2.5 w-full rounded-xl text-red-600 hover:bg-red-50 transition-all duration-200',
               collapsed && 'justify-center'
             )}
           >
             <LogOut className="w-5 h-5 flex-shrink-0" />
-            {!collapsed && <span>Logout</span>}
+            {!collapsed && <span className="font-medium">Logout</span>}
           </button>
         </div>
+
+        {/* Collapse Toggle */}
+        <button
+          onClick={() => setCollapsed(!collapsed)}
+          className="absolute -right-3 top-20 w-6 h-6 bg-white border border-gray-200 rounded-full shadow-sm flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors"
+        >
+          {collapsed ? (
+            <ChevronRight className="w-4 h-4" />
+          ) : (
+            <ChevronLeft className="w-4 h-4" />
+          )}
+        </button>
       </aside>
 
       {/* Mobile Sidebar */}
       {mobileOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/50 z-40 lg:hidden"
+            className="fixed inset-0 bg-black/40 z-40 lg:hidden backdrop-blur-sm"
             onClick={() => setMobileOpen(false)}
           />
-          <aside className="fixed top-0 left-0 h-full w-64 bg-ocean-900 border-r border-ocean-700 z-50 lg:hidden">
-            <div className="h-16 flex items-center justify-between px-4 border-b border-ocean-700">
-              <Link href="/admin/dashboard" className="flex items-center gap-2">
-                <div className="relative w-8 h-8">
-                  <svg viewBox="0 0 40 40" fill="none" className="w-full h-full">
-                    <circle cx="20" cy="20" r="18" stroke="currentColor" strokeWidth="2" className="text-ocean-400" />
-                    <path d="M10 20C10 20 15 14 20 14C25 14 30 20 30 20C30 20 25 26 20 26C15 26 10 20 10 20Z" fill="currentColor" className="text-coral-400" />
-                    <circle cx="20" cy="20" r="3" fill="currentColor" className="text-ocean-300" />
-                  </svg>
+          <aside className="fixed top-0 left-0 h-full w-72 bg-white z-50 lg:hidden shadow-2xl">
+            <div className="h-16 flex items-center justify-between px-4 border-b border-gray-100">
+              <Link href="/admin/dashboard" className="flex items-center gap-3">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ocean-500 to-ocean-600 flex items-center justify-center shadow-lg shadow-ocean-500/20">
+                  <Ship className="w-5 h-5 text-white" />
                 </div>
-                <span className="text-white font-bold">Admin</span>
+                <div>
+                  <span className="font-bold text-gray-900 block">Voyage</span>
+                  <span className="text-xs text-ocean-600">Admin Panel</span>
+                </div>
               </Link>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="p-2 text-white/80 hover:text-white"
+                className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg"
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
 
-            <nav className="p-4 space-y-1">
+            <nav className="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-128px)]">
               {navigation.map((item) => {
                 const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
                 return (
@@ -171,25 +187,40 @@ export default function AdminLayout({
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
                     className={cn(
-                      'flex items-center gap-3 px-3 py-2.5 rounded-lg transition-colors',
+                      'flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200',
                       isActive
-                        ? 'bg-ocean-800 text-coral-400'
-                        : 'text-white/70 hover:text-white hover:bg-ocean-800/50'
+                        ? 'bg-gradient-to-r from-ocean-500 to-ocean-600 text-white shadow-lg shadow-ocean-500/20'
+                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
                     )}
                   >
                     <item.icon className="w-5 h-5" />
-                    <span>{item.name}</span>
+                    <span className="font-medium">{item.name}</span>
                   </Link>
                 );
               })}
             </nav>
+
+            <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-gray-100 bg-white">
+              <button
+                onClick={handleLogout}
+                className="flex items-center gap-3 px-3 py-3 w-full rounded-xl text-red-600 hover:bg-red-50 transition-all duration-200"
+              >
+                <LogOut className="w-5 h-5" />
+                <span className="font-medium">Logout</span>
+              </button>
+            </div>
           </aside>
         </>
       )}
 
       {/* Main Content */}
-      <main className={cn('pt-16 lg:pt-0 transition-all duration-300', collapsed ? 'lg:pl-20' : 'lg:pl-64')}>
-        <div className="p-6">{children}</div>
+      <main
+        className={cn(
+          'pt-16 lg:pt-0 min-h-screen transition-all duration-300',
+          collapsed ? 'lg:pl-20' : 'lg:pl-64'
+        )}
+      >
+        <div className="p-4 md:p-6 lg:p-8">{children}</div>
       </main>
     </div>
   );
