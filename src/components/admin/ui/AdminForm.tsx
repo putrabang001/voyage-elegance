@@ -3,10 +3,10 @@
 import { ReactNode, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
-import { ArrowLeft, Save, Upload, X, Plus } from 'lucide-react';
+import { ArrowLeft, Save, Upload, X } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
-interface FormField {
+export interface FormField {
   name: string;
   label: string;
   type?: 'text' | 'email' | 'password' | 'number' | 'textarea' | 'select' | 'checkbox' | 'image' | 'tags';
@@ -17,13 +17,13 @@ interface FormField {
   className?: string;
 }
 
-interface FormSection {
+export interface FormSection {
   title?: string;
   description?: string;
   fields: FormField[];
 }
 
-interface AdminFormProps {
+export interface AdminFormProps {
   title: string;
   description?: string;
   sections?: FormSection[];
@@ -34,7 +34,6 @@ interface AdminFormProps {
   isEditing?: boolean;
 }
 
-// Input Component
 function FormInput({
   field,
   value,
@@ -104,7 +103,6 @@ function FormInput({
   );
 }
 
-// Image Upload Component
 function ImageUpload({
   value,
   onChange,
@@ -155,7 +153,7 @@ function ImageUpload({
   );
 }
 
-export default function AdminForm({
+export function AdminForm({
   title,
   description,
   sections,
@@ -164,7 +162,7 @@ export default function AdminForm({
   onSubmit,
   backHref,
   isEditing = false,
-}: FormProps) {
+}: AdminFormProps) {
   const router = useRouter();
   const [formData, setFormData] = useState<Record<string, unknown>>(initialData);
   const [isLoading, setIsLoading] = useState(false);
@@ -183,7 +181,6 @@ export default function AdminForm({
       if (onSubmit) {
         await onSubmit(formData);
       } else {
-        // Simulate save
         await new Promise((resolve) => setTimeout(resolve, 1000));
       }
       router.push(backHref);
@@ -196,7 +193,6 @@ export default function AdminForm({
 
   return (
     <div className="max-w-4xl">
-      {/* Header */}
       <div className="flex items-center gap-4 mb-8">
         <Link
           href={backHref}
@@ -214,16 +210,13 @@ export default function AdminForm({
         </div>
       </div>
 
-      {/* Form */}
       <form onSubmit={handleSubmit} className="space-y-8">
-        {/* Error Message */}
         {error && (
           <div className="p-4 rounded-xl bg-[var(--error-soft)] border border-[var(--error)]/20">
             <p className="text-sm text-[var(--error)]">{error}</p>
           </div>
         )}
 
-        {/* Sections or Fields */}
         {sections ? (
           sections.map((section, index) => (
             <div
@@ -297,7 +290,6 @@ export default function AdminForm({
           </div>
         )}
 
-        {/* Actions */}
         <div className="flex items-center justify-end gap-4">
           <Link
             href={backHref}
@@ -326,4 +318,4 @@ export default function AdminForm({
   );
 }
 
-export { AdminForm };
+export default AdminForm;
