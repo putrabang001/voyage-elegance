@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, ReactNode } from 'react';
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import {
@@ -20,6 +20,8 @@ import {
   Menu,
   X,
   Bell,
+  Search,
+  Waves,
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
@@ -36,11 +38,7 @@ const navigation = [
   { name: 'Settings', href: '/admin/settings', icon: Settings },
 ];
 
-export default function AdminLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function AdminLayout({ children }: { children: ReactNode }) {
   const pathname = usePathname();
   const router = useRouter();
   const [collapsed, setCollapsed] = useState(false);
@@ -52,59 +50,68 @@ export default function AdminLayout({
   };
 
   return (
-    <div className="min-h-screen bg-gray-50">
-      {/* Mobile Header */}
-      <header className="lg:hidden fixed top-0 left-0 right-0 z-40 h-16 bg-white border-b border-gray-200 flex items-center justify-between px-4 shadow-sm">
-        <div className="flex items-center gap-3">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-ocean-500 to-ocean-600 flex items-center justify-center">
-            <Ship className="w-5 h-5 text-white" />
+    <div className="min-h-screen bg-[#09090b]">
+      {/* Top Bar */}
+      <header className="fixed top-0 left-0 right-0 z-50 h-16 bg-[#0a0a0f]/80 backdrop-blur-xl border-b border-white/5">
+        <div className="h-full px-4 flex items-center justify-between">
+          {/* Left - Mobile Menu & Logo */}
+          <div className="flex items-center gap-4">
+            <button
+              onClick={() => setMobileOpen(true)}
+              className="lg:hidden p-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg transition-colors"
+            >
+              <Menu className="w-6 h-6" />
+            </button>
+            <Link href="/admin/dashboard" className="flex items-center gap-3">
+              <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-ocean-500 to-ocean-600 flex items-center justify-center shadow-lg shadow-ocean-500/20">
+                <Waves className="w-5 h-5 text-white" />
+              </div>
+              <div className="hidden sm:block">
+                <span className="font-bold text-white text-lg">Voyage</span>
+                <span className="text-xs text-gray-400 block -mt-1">Admin</span>
+              </div>
+            </Link>
           </div>
-          <span className="font-semibold text-gray-900">Admin</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <button className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg">
-            <Bell className="w-5 h-5" />
-          </button>
-          <button
-            onClick={() => setMobileOpen(true)}
-            className="p-2 text-gray-500 hover:text-gray-700 hover:bg-gray-100 rounded-lg"
-          >
-            <Menu className="w-6 h-6" />
-          </button>
+
+          {/* Center - Search */}
+          <div className="hidden md:flex flex-1 max-w-md mx-8">
+            <div className="relative w-full">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-500" />
+              <input
+                type="text"
+                placeholder="Search anything..."
+                className="w-full pl-10 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-ocean-500/50 transition-all"
+              />
+            </div>
+          </div>
+
+          {/* Right - Actions */}
+          <div className="flex items-center gap-2">
+            <button className="relative p-2.5 text-gray-400 hover:text-white hover:bg-white/5 rounded-xl transition-colors">
+              <Bell className="w-5 h-5" />
+              <span className="absolute top-1.5 right-1.5 w-2 h-2 bg-coral-500 rounded-full" />
+            </button>
+            <div className="hidden sm:flex items-center gap-3 pl-4 border-l border-white/10">
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-ocean-500 to-coral-500 flex items-center justify-center text-white text-sm font-medium">
+                A
+              </div>
+              <div className="hidden lg:block">
+                <p className="text-sm font-medium text-white">Admin</p>
+                <p className="text-xs text-gray-400">Superadmin</p>
+              </div>
+            </div>
+          </div>
         </div>
       </header>
 
       {/* Sidebar - Desktop */}
       <aside
         className={cn(
-          'fixed top-0 left-0 h-full bg-white border-r border-gray-200 z-30 transition-all duration-300 hidden lg:block shadow-sm',
+          'fixed top-16 left-0 bottom-0 z-40 bg-[#0a0a0f]/50 backdrop-blur-xl border-r border-white/5 transition-all duration-300 hidden lg:block',
           collapsed ? 'w-20' : 'w-64'
         )}
       >
-        {/* Logo */}
-        <div className="h-16 flex items-center justify-between px-4 border-b border-gray-100">
-          {!collapsed && (
-            <Link href="/admin/dashboard" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ocean-500 to-ocean-600 flex items-center justify-center shadow-lg shadow-ocean-500/20">
-                <Ship className="w-5 h-5 text-white" />
-              </div>
-              <div>
-                <span className="font-bold text-gray-900 block">Voyage</span>
-                <span className="text-xs text-ocean-600">Admin Panel</span>
-              </div>
-            </Link>
-          )}
-          {collapsed && (
-            <Link href="/admin/dashboard" className="mx-auto">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ocean-500 to-ocean-600 flex items-center justify-center shadow-lg shadow-ocean-500/20">
-                <Ship className="w-5 h-5 text-white" />
-              </div>
-            </Link>
-          )}
-        </div>
-
-        {/* Navigation */}
-        <nav className="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-128px)]">
+        <nav className="p-3 space-y-1">
           {navigation.map((item) => {
             const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
             return (
@@ -112,85 +119,85 @@ export default function AdminLayout({
                 key={item.name}
                 href={item.href}
                 className={cn(
-                  'flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200',
+                  'flex items-center gap-3 px-3 py-2.5 rounded-xl transition-all duration-200 group',
                   isActive
-                    ? 'bg-gradient-to-r from-ocean-500 to-ocean-600 text-white shadow-lg shadow-ocean-500/20'
-                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                    ? 'bg-gradient-to-r from-ocean-500/20 to-ocean-500/10 text-ocean-400 border border-ocean-500/20'
+                    : 'text-gray-400 hover:text-white hover:bg-white/5'
                 )}
               >
-                <item.icon className={cn('w-5 h-5 flex-shrink-0', collapsed && 'mx-auto')} />
-                {!collapsed && <span className="font-medium">{item.name}</span>}
+                <item.icon className={cn('w-5 h-5 flex-shrink-0', isActive && 'text-ocean-400')} />
+                {!collapsed && (
+                  <span className={cn('text-sm font-medium', isActive && 'text-ocean-400')}>
+                    {item.name}
+                  </span>
+                )}
               </Link>
             );
           })}
         </nav>
 
-        {/* Bottom */}
-        <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-gray-100 bg-white">
+        {/* Collapse Toggle */}
+        <button
+          onClick={() => setCollapsed(!collapsed)}
+          className="absolute -right-3 top-20 w-6 h-6 bg-[#18181b] border border-white/10 rounded-full flex items-center justify-center text-gray-400 hover:text-white hover:bg-white/10 transition-colors"
+        >
+          {collapsed ? <ChevronRight className="w-3.5 h-3.5" /> : <ChevronLeft className="w-3.5 h-3.5" />}
+        </button>
+
+        {/* Logout */}
+        <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-white/5">
           <button
             onClick={handleLogout}
             className={cn(
-              'flex items-center gap-3 px-3 py-2.5 w-full rounded-xl text-red-600 hover:bg-red-50 transition-all duration-200',
+              'w-full flex items-center gap-3 px-3 py-2.5 rounded-xl text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition-all duration-200',
               collapsed && 'justify-center'
             )}
           >
             <LogOut className="w-5 h-5 flex-shrink-0" />
-            {!collapsed && <span className="font-medium">Logout</span>}
+            {!collapsed && <span className="text-sm font-medium">Logout</span>}
           </button>
         </div>
-
-        {/* Collapse Toggle */}
-        <button
-          onClick={() => setCollapsed(!collapsed)}
-          className="absolute -right-3 top-20 w-6 h-6 bg-white border border-gray-200 rounded-full shadow-sm flex items-center justify-center text-gray-400 hover:text-gray-600 hover:bg-gray-50 transition-colors"
-        >
-          {collapsed ? (
-            <ChevronRight className="w-4 h-4" />
-          ) : (
-            <ChevronLeft className="w-4 h-4" />
-          )}
-        </button>
       </aside>
 
       {/* Mobile Sidebar */}
       {mobileOpen && (
         <>
           <div
-            className="fixed inset-0 bg-black/40 z-40 lg:hidden backdrop-blur-sm"
+            className="fixed inset-0 z-50 bg-black/60 backdrop-blur-sm lg:hidden"
             onClick={() => setMobileOpen(false)}
           />
-          <aside className="fixed top-0 left-0 h-full w-72 bg-white z-50 lg:hidden shadow-2xl">
-            <div className="h-16 flex items-center justify-between px-4 border-b border-gray-100">
-              <Link href="/admin/dashboard" className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ocean-500 to-ocean-600 flex items-center justify-center shadow-lg shadow-ocean-500/20">
-                  <Ship className="w-5 h-5 text-white" />
+          <aside className="fixed top-0 left-0 bottom-0 w-72 z-50 bg-[#0a0a0f] border-r border-white/5 lg:hidden overflow-y-auto">
+            <div className="h-16 flex items-center justify-between px-4 border-b border-white/5">
+              <Link href="/admin/dashboard" className="flex items-center gap-3" onClick={() => setMobileOpen(false)}>
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-ocean-500 to-ocean-600 flex items-center justify-center">
+                  <Waves className="w-5 h-5 text-white" />
                 </div>
                 <div>
-                  <span className="font-bold text-gray-900 block">Voyage</span>
-                  <span className="text-xs text-ocean-600">Admin Panel</span>
+                  <span className="font-bold text-white">Voyage Elegance</span>
+                  <span className="text-xs text-gray-400 block">Admin Panel</span>
                 </div>
               </Link>
               <button
                 onClick={() => setMobileOpen(false)}
-                className="p-2 text-gray-400 hover:text-gray-600 hover:bg-gray-100 rounded-lg"
+                className="p-2 text-gray-400 hover:text-white hover:bg-white/5 rounded-lg"
               >
                 <X className="w-6 h-6" />
               </button>
             </div>
 
-            <nav className="p-3 space-y-1 overflow-y-auto max-h-[calc(100vh-128px)]">
+            <nav className="p-3 space-y-1">
               {navigation.map((item) => {
-                const isActive = pathname === item.href || pathname.startsWith(item.href + '/');
+                const isActive = pathname === item.href;
                 return (
                   <Link
                     key={item.name}
                     href={item.href}
                     onClick={() => setMobileOpen(false)}
                     className={cn(
-                      'flex items-center gap-3 px-3 py-3 rounded-xl transition-all duration-200',
+                      'flex items-center gap-3 px-4 py-3 rounded-xl transition-all',
                       isActive
-                        ? 'bg-gradient-to-r from-ocean-500 to-ocean-600 text-white shadow-lg shadow-ocean-500/20'
-                        : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                        ? 'bg-ocean-500/20 text-ocean-400 border border-ocean-500/20'
+                        : 'text-gray-400 hover:text-white hover:bg-white/5'
                     )}
                   >
                     <item.icon className="w-5 h-5" />
@@ -200,10 +207,10 @@ export default function AdminLayout({
               })}
             </nav>
 
-            <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-gray-100 bg-white">
+            <div className="absolute bottom-0 left-0 right-0 p-3 border-t border-white/5">
               <button
                 onClick={handleLogout}
-                className="flex items-center gap-3 px-3 py-3 w-full rounded-xl text-red-600 hover:bg-red-50 transition-all duration-200"
+                className="w-full flex items-center gap-3 px-4 py-3 rounded-xl text-gray-400 hover:text-red-400 hover:bg-red-500/10 transition-all"
               >
                 <LogOut className="w-5 h-5" />
                 <span className="font-medium">Logout</span>
@@ -214,13 +221,8 @@ export default function AdminLayout({
       )}
 
       {/* Main Content */}
-      <main
-        className={cn(
-          'pt-16 lg:pt-0 min-h-screen transition-all duration-300',
-          collapsed ? 'lg:pl-20' : 'lg:pl-64'
-        )}
-      >
-        <div className="p-4 md:p-6 lg:p-8">{children}</div>
+      <main className={cn('pt-16 min-h-screen transition-all duration-300', collapsed ? 'lg:pl-20' : 'lg:pl-64')}>
+        <div className="p-6">{children}</div>
       </main>
     </div>
   );
