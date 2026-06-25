@@ -5,11 +5,10 @@ import { ChevronDown } from 'lucide-react';
 import { cn } from '@/lib/utils';
 
 interface AccordionItemProps {
-  title: string;
+  title: string | ReactNode;
   content: string | ReactNode;
   isOpen?: boolean;
   onToggle?: () => void;
-  allowMultiple?: boolean;
 }
 
 export function AccordionItem({
@@ -45,7 +44,7 @@ export function AccordionItem({
 }
 
 interface AccordionProps {
-  items: { title: string; content: string | ReactNode }[];
+  items: { title: string | ReactNode; content: string | ReactNode }[];
   defaultOpen?: number | number[];
   allowMultiple?: boolean;
   className?: string;
@@ -86,7 +85,6 @@ export function Accordion({
           content={item.content}
           isOpen={openItems.includes(index)}
           onToggle={() => handleToggle(index)}
-          allowMultiple={allowMultiple}
         />
       ))}
     </div>
