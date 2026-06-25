@@ -6,19 +6,16 @@ import Link from 'next/link';
 import {
   Plus,
   Search,
-  MoreHorizontal,
   Pencil,
   Trash2,
   Eye,
   Star,
   MapPin,
-  Filter,
   ChevronDown,
 } from 'lucide-react';
 import { Button } from '@/components/ui/Button';
 import { Badge } from '@/components/ui/Badge';
 import { cn } from '@/lib/utils';
-import Link from 'next/link';
 
 const destinations = [
   {
@@ -91,8 +88,8 @@ export default function DestinationsPage() {
       {/* Header */}
       <div className="flex items-center justify-between">
         <div>
-          <h1 className="text-2xl font-bold text-slate-900">Destinations</h1>
-          <p className="text-slate-500 mt-0.5">
+          <h1 className="text-2xl font-bold text-[var(--foreground)]">Destinations</h1>
+          <p className="text-[var(--muted-foreground)] mt-0.5">
             Manage your travel destinations
           </p>
         </div>
@@ -106,13 +103,13 @@ export default function DestinationsPage() {
       {/* Filters */}
       <div className="flex flex-col sm:flex-row gap-4">
         <div className="relative flex-1">
-          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-slate-400" />
+          <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-[var(--muted-foreground)]" />
           <input
             type="text"
             placeholder="Search destinations..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full h-11 pl-11 pr-4 rounded-xl border border-slate-200 bg-white focus:outline-none focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 transition-all"
+            className="w-full h-11 pl-11 pr-4 rounded-xl border border-[var(--border)] bg-[var(--card)] text-[var(--foreground)] placeholder:text-[var(--muted-foreground)] focus:outline-none focus:ring-2 focus:ring-[var(--primary)]/20 focus:border-[var(--primary)] transition-all"
           />
         </div>
         <Button variant="outline" rightIcon={<ChevronDown className="w-4 h-4" />}>
@@ -124,34 +121,34 @@ export default function DestinationsPage() {
       </div>
 
       {/* Table */}
-      <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
+      <div className="bg-[var(--card)] rounded-2xl border border-[var(--border)] shadow-sm overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full">
             <thead>
-              <tr className="bg-slate-50 border-b border-slate-100">
-                <th className="px-6 py-3.5 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+              <tr className="bg-[var(--muted)] border-b border-[var(--border)]">
+                <th className="px-6 py-3.5 text-left text-xs font-medium text-[var(--muted-foreground)] uppercase tracking-wider">
                   Destination
                 </th>
-                <th className="px-6 py-3.5 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3.5 text-left text-xs font-medium text-[var(--muted-foreground)] uppercase tracking-wider">
                   Region
                 </th>
-                <th className="px-6 py-3.5 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3.5 text-left text-xs font-medium text-[var(--muted-foreground)] uppercase tracking-wider">
                   Tours
                 </th>
-                <th className="px-6 py-3.5 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3.5 text-left text-xs font-medium text-[var(--muted-foreground)] uppercase tracking-wider">
                   Status
                 </th>
-                <th className="px-6 py-3.5 text-left text-xs font-medium text-slate-500 uppercase tracking-wider">
+                <th className="px-6 py-3.5 text-left text-xs font-medium text-[var(--muted-foreground)] uppercase tracking-wider">
                   Updated
                 </th>
                 <th className="px-6 py-3.5"></th>
               </tr>
             </thead>
-            <tbody className="divide-y divide-slate-100">
+            <tbody className="divide-y divide-[var(--border)]">
               {filtered.map((destination) => (
                 <tr
                   key={destination.id}
-                  className="hover:bg-slate-50/50 transition-colors"
+                  className="hover:bg-[var(--muted)]/50 transition-colors"
                 >
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-4">
@@ -164,19 +161,19 @@ export default function DestinationsPage() {
                         />
                       </div>
                       <div>
-                        <p className="font-medium text-slate-900">
+                        <p className="font-medium text-[var(--foreground)]">
                           {destination.name}
                         </p>
-                        <p className="text-sm text-slate-500">
+                        <p className="text-sm text-[var(--muted-foreground)]">
                           {destination.location}
                         </p>
                       </div>
                     </div>
                   </td>
-                  <td className="px-6 py-4 text-slate-600">
+                  <td className="px-6 py-4 text-[var(--muted-foreground)]">
                     {destination.location}
                   </td>
-                  <td className="px-6 py-4 text-slate-600">
+                  <td className="px-6 py-4 text-[var(--muted-foreground)]">
                     {destination.tours} tours
                   </td>
                   <td className="px-6 py-4">
@@ -186,17 +183,17 @@ export default function DestinationsPage() {
                         Featured
                       </Badge>
                     ) : (
-                      <span className="text-sm text-slate-400">Regular</span>
+                      <span className="text-sm text-[var(--muted-foreground)]">Regular</span>
                     )}
                   </td>
-                  <td className="px-6 py-4 text-sm text-slate-500">
+                  <td className="px-6 py-4 text-sm text-[var(--muted-foreground)]">
                     {destination.updatedAt}
                   </td>
                   <td className="px-6 py-4">
                     <div className="flex items-center gap-1">
                       <Link
                         href={`/en/destinations/${destination.id}`}
-                        className="p-2 text-slate-400 hover:text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                        className="p-2 text-[var(--muted-foreground)] hover:text-[var(--primary)] hover:bg-[var(--primary-soft)] rounded-lg transition-colors"
                       >
                         <Eye className="w-4 h-4" />
                       </Link>
@@ -206,7 +203,7 @@ export default function DestinationsPage() {
                       >
                         <Pencil className="w-4 h-4" />
                       </Link>
-                      <button className="p-2 text-slate-400 hover:text-red-600 hover:bg-red-50 rounded-lg transition-colors">
+                      <button className="p-2 text-[var(--muted-foreground)] hover:text-red-500 hover:bg-red-500/10 rounded-lg transition-colors">
                         <Trash2 className="w-4 h-4" />
                       </button>
                     </div>
@@ -220,13 +217,13 @@ export default function DestinationsPage() {
         {/* Empty State */}
         {filtered.length === 0 && (
           <div className="py-16 text-center">
-            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-slate-100 flex items-center justify-center">
-              <MapPin className="w-8 h-8 text-slate-400" />
+            <div className="w-16 h-16 mx-auto mb-4 rounded-2xl bg-[var(--muted)] flex items-center justify-center">
+              <MapPin className="w-8 h-8 text-[var(--muted-foreground)]" />
             </div>
-            <h3 className="text-lg font-medium text-slate-900 mb-1">
+            <h3 className="text-lg font-medium text-[var(--foreground)] mb-1">
               No destinations found
             </h3>
-            <p className="text-slate-500 mb-4">
+            <p className="text-[var(--muted-foreground)] mb-4">
               Try adjusting your search or filter to find what you&apos;re looking for.
             </p>
             <Button variant="outline" size="sm">
@@ -237,10 +234,10 @@ export default function DestinationsPage() {
 
         {/* Pagination */}
         {filtered.length > 0 && (
-          <div className="px-6 py-4 border-t border-slate-100 flex items-center justify-between">
-            <p className="text-sm text-slate-500">
+          <div className="px-6 py-4 border-t border-[var(--border)] flex items-center justify-between">
+            <p className="text-sm text-[var(--muted-foreground)]">
               Showing{' '}
-              <span className="font-medium text-slate-900">
+              <span className="font-medium text-[var(--foreground)]">
                 {filtered.length}
               </span>{' '}
               of {destinations.length} destinations
