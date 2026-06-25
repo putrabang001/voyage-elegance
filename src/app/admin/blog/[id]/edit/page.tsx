@@ -30,7 +30,7 @@ const sections = [
     fields: [
       { name: 'image', label: 'Post Image', type: 'image' },
       { name: 'altEn', label: 'Alt Text (English)', placeholder: 'Image description' },
-      { name: 'altFr', label: 'Alt Text (French)', placeholder: 'Description de l\'image' },
+      { name: 'altFr', label: 'Alt Text (French)', placeholder: "Description de l'image" },
       { name: 'altId', label: 'Alt Text (Indonesian)', placeholder: 'Deskripsi gambar' },
     ],
   },
@@ -45,7 +45,7 @@ const sections = [
   {
     title: 'Content - French',
     fields: [
-      { name: 'titleFr', label: 'Title (French)', placeholder: 'Titre en français' },
+      { name: 'titleFr', label: 'Title (French)', placeholder: 'Titre en francais' },
       { name: 'excerptFr', label: 'Excerpt', type: 'textarea', rows: 3 },
       { name: 'contentFr', label: 'Full Content', type: 'textarea', rows: 12 },
     ],
@@ -73,7 +73,11 @@ const sampleData = {
   titleId: 'Top 10 Destinasi Bawah Laut untuk 2026',
 };
 
-export default function EditBlogPostPage({ params }: { params: { id: string } }) {
+interface PageProps {
+  params: { id: string };
+}
+
+export default function EditBlogPostPage({ params }: PageProps) {
   return (
     <AdminForm
       title="Blog Post"

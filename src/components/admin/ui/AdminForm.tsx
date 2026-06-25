@@ -9,7 +9,7 @@ import { cn } from '@/lib/utils';
 export interface FormField {
   name: string;
   label: string;
-  type?: 'text' | 'email' | 'password' | 'number' | 'textarea' | 'select' | 'checkbox' | 'image' | 'tags';
+  type?: string;
   placeholder?: string;
   required?: boolean;
   options?: { value: string; label: string }[];

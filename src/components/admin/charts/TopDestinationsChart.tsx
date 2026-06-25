@@ -9,7 +9,6 @@ import {
   Legend,
 } from 'recharts';
 import { ChartContainer, ChartHeader, getTooltipStyle } from './chart-utils';
-import { cn } from '@/lib/utils';
 
 // Sample data
 const destinationData = [
@@ -47,10 +46,7 @@ export function TopDestinationsChart({ className }: TopDestinationsChartProps) {
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Pie>
-            <Tooltip
-              {...getTooltipStyle()}
-              formatter={(value: number) => [`${value}%`, 'Share']}
-            />
+            <Tooltip {...getTooltipStyle()} />
             <Legend
               layout="vertical"
               align="right"
@@ -99,10 +95,7 @@ export function CustomerDemographicsChart({ className }: TopDestinationsChartPro
                 <Cell key={`cell-${index}`} fill={entry.color} />
               ))}
             </Pie>
-            <Tooltip
-              {...getTooltipStyle()}
-              formatter={(value: number) => [`${value}%`, 'Share']}
-            />
+            <Tooltip {...getTooltipStyle()} />
             <Legend
               layout="vertical"
               align="right"

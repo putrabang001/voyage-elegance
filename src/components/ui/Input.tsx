@@ -235,4 +235,4 @@ const Select = forwardRef<HTMLSelectElement, SelectProps>(
 Select.displayName = 'Select';
 
 export { Input, Textarea, Select };
-export type { InputProps, TextareaProps, SelectProps, SelectOption };
+export type { InputProps, TextareaProps, SelectProps };

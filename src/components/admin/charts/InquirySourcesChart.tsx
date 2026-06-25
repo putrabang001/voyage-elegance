@@ -54,7 +54,6 @@ export function InquirySourcesChart({ className }: InquirySourcesChartProps) {
                 dataKey="value"
                 fontSize={14}
                 fontWeight={600}
-                formatter={(value: number) => value}
               />
             </Funnel>
           </FunnelChart>
