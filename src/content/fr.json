@@ -1,0 +1,294 @@
+{
+  "common": {
+    "brandName": "Voyage Elegance",
+    "tagline": "Découvrez les Trésors les Plus Fins de l'Océan",
+    "loading": "Chargement...",
+    "error": "Une erreur s'est produite",
+    "success": "Succès !",
+    "save": "Enregistrer",
+    "cancel": "Annuler",
+    "delete": "Supprimer",
+    "edit": "Modifier",
+    "add": "Ajouter",
+    "view": "Voir",
+    "back": "Retour",
+    "next": "Suivant",
+    "previous": "Précédent",
+    "search": "Rechercher",
+    "filter": "Filtrer",
+    "sort": "Trier",
+    "showAll": "Tout Afficher",
+    "readMore": "Lire Plus",
+    "learnMore": "En Savoir Plus",
+    "contactUs": "Contactez-Nous",
+    "subscribe": "S'abonner",
+    "submit": "Soumettre",
+    "send": "Envoyer",
+    "required": "Obligatoire",
+    "optional": "Facultatif",
+    "from": "À partir de",
+    "perPerson": "par personne",
+    "days": "jours",
+    "nights": "nuits",
+    "rating": "Note",
+    "reviews": "avis"
+  },
+  "nav": {
+    "home": "Accueil",
+    "destinations": "Destinations",
+    "tours": "Circuits",
+    "gallery": "Galerie",
+    "blog": "Blog",
+    "about": "À Propos",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "bookNow": "Réserver"
+  },
+  "hero": {
+    "title": "Découvrez les Trésors les Plus Fins de l'Océan",
+    "subtitle": "Vivez des mondes sous-marins à couper le souffle, des plages immaculées et des aventures inoubliables dans les destinations océaniques les plus belles de la Terre.",
+    "cta": "Explorer les Destinations"
+  },
+  "destinations": {
+    "title": "Destinations Populaires",
+    "subtitle": "Explorez notre collection soigneusement sélectionnée des destinations océaniques les plus époustouflantes au monde",
+    "viewDetails": "Voir les Détails",
+    "featured": "Destinations en Vedette",
+    "all": "Toutes les Destinations",
+    "region": "Région",
+    "highlights": "Points Forts",
+    "gallery": "Galerie Photos",
+    "relatedTours": "Circuits Associés",
+    "included": "Ce qui est Inclus",
+    "faq": "Questions Fréquemment Posées",
+    "inquiry": "Envoyer une Demande"
+  },
+  "tours": {
+    "title": "Circuits Populaires",
+    "subtitle": "Expériences de voyage conçues pour des souvenirs inoubliables",
+    "viewDetails": "Voir les Détails",
+    "featured": "Circuits en Vedette",
+    "all": "Tous les Circuits",
+    "duration": "Durée",
+    "groupSize": "Taille du Groupe",
+    "difficulty": "Difficulté",
+    "easy": "Facile",
+    "moderate": "Modéré",
+    "challenging": "Challenging",
+    "itinerary": "Itinéraire",
+    "includes": "Ce qui est Inclus",
+    "excludes": "Non Inclus",
+    "price": "Prix",
+    "bookNow": "Réserver Maintenant",
+    "inquiry": "Envoyer une Demande",
+    "day": "Jour",
+    "relatedTours": "Vous Pourriez Aimer Aussi"
+  },
+  "gallery": {
+    "title": "Galerie",
+    "subtitle": "Capturer la beauté des paradis océaniques du monde entier",
+    "categories": {
+      "all": "Tout",
+      "underwater": "Sous-marin",
+      "beach": "Plage",
+      "sunset": "Coucher de Soleil",
+      "wildlife": "Faune Sauvage"
+    }
+  },
+  "blog": {
+    "title": "Récits de Voyage",
+    "subtitle": "Inspiration, conseils et histoires de nos aventures",
+    "readMore": "Lire l'Article",
+    "latestPosts": "Derniers Articles",
+    "popularPosts": "Articles Populaires",
+    "categories": "Catégories",
+    "share": "Partager",
+    "relatedPosts": "Articles Connexes",
+    "by": "Par",
+    "minuteRead": "min de lecture"
+  },
+  "about": {
+    "title": "À Propos de Nous",
+    "subtitle": "Votre partenaire de confiance pour l'exploration océanique",
+    "story": "Notre Histoire",
+    "mission": "Notre Mission",
+    "vision": "Notre Vision",
+    "team": "Notre Équipe",
+    "stats": {
+      "experience": "Années d'Expérience",
+      "destinations": "Destinations",
+      "travelers": "Voyageurs Satisfaits",
+      "tours": "Circuits Complétés"
+    }
+  },
+  "contact": {
+    "title": "Contactez-Nous",
+    "subtitle": "Nous sommes là pour vous aider à planifier votre aventure océanique parfaite",
+    "form": {
+      "name": "Nom Complet",
+      "email": "Adresse Email",
+      "phone": "Numéro de Téléphone",
+      "destination": "Destination Intéressée",
+      "tour": "Circuit Intéressé",
+      "message": "Votre Message",
+      "submit": "Envoyer le Message"
+    },
+    "info": {
+      "address": "Adresse",
+      "email": "Email",
+      "phone": "Téléphone",
+      "whatsapp": "WhatsApp",
+      "hours": "Heures d'Ouverture"
+    },
+    "success": "Merci pour votre message ! Nous vous répondrons dans les 24 heures.",
+    "mapTitle": "Trouvez-Nous"
+  },
+  "faq": {
+    "title": "Questions Fréquemment Posées",
+    "subtitle": "Trouvez des réponses aux questions courantes sur nos circuits et services",
+    "search": "Rechercher des questions...",
+    "noResults": "Aucune question trouvée correspondant à votre recherche.",
+    "categories": {
+      "general": "Général",
+      "booking": "Réservation & Paiement",
+      "trip": "Pendant le Voyage",
+      "safety": "Sécurité & Santé",
+      "equipment": "Équipement & Matériel"
+    }
+  },
+  "testimonials": {
+    "title": "Ce Que Disent Nos Voyageurs",
+    "subtitle": "Récits d'aventuriers qui ont vécu nos circuits"
+  },
+  "newsletter": {
+    "title": "Restez Informé",
+    "subtitle": "Abonnez-vous à notre newsletter pour des offres exclusives et de l'inspiration voyage",
+    "placeholder": "Entrez votre adresse email",
+    "button": "S'abonner",
+    "success": "Merci de votre inscription !",
+    "error": "Veuillez entrer une adresse email valide."
+  },
+  "footer": {
+    "about": {
+      "title": "À Propos de Nous",
+      "description": "Voyage Elegance est votre passerelle vers des aventures océaniques extraordinaires. Nous créons des expériences inoubliables dans les destinations marines les plus belles du monde."
+    },
+    "quickLinks": {
+      "title": "Liens Rapides",
+      "destinations": "Destinations",
+      "tours": "Circuits",
+      "gallery": "Galerie",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "support": {
+      "title": "Support",
+      "faq": "FAQ",
+      "terms": "Conditions d'Utilisation",
+      "privacy": "Politique de Confidentialité",
+      "cancellation": "Politique d'Annulation"
+    },
+    "connect": {
+      "title": "Suivez-Nous"
+    },
+    "copyright": "© 2026 Voyage Elegance. Tous droits réservés."
+  },
+  "inquiry": {
+    "title": "Envoyer une Demande",
+    "subtitle": "Remplissez le formulaire ci-dessous et nous vous répondrons dans les 24 heures",
+    "success": "Merci pour votre demande ! Nous répondrons dans les 24 heures.",
+    "selectDestination": "Sélectionner une Destination",
+    "selectTour": "Sélectionner un Circuit"
+  },
+  "errors": {
+    "notFound": "Page Non Trouvée",
+    "notFoundMessage": "La page que vous recherchez n'existe pas ou a été déplacée.",
+    "serverError": "Erreur Serveur",
+    "serverErrorMessage": "Une erreur s'est produite de notre côté. Veuillez réessayer plus tard.",
+    "backHome": "Retour à l'Accueil"
+  },
+  "admin": {
+    "dashboard": "Tableau de Bord",
+    "content": "Gestion de Contenu",
+    "destinations": "Destinations",
+    "tours": "Circuits",
+    "blog": "Articles de Blog",
+    "gallery": "Galerie",
+    "testimonials": "Témoignages",
+    "faqs": "FAQs",
+    "communications": "Communications",
+    "inquiries": "Demandes",
+    "system": "Système",
+    "activityLog": "Journal d'Activité",
+    "settings": "Paramètres",
+    "profile": "Profil",
+    "logout": "Déconnexion",
+    "welcome": "Bon retour",
+    "stats": {
+      "destinations": "Destinations",
+      "tours": "Circuits",
+      "blogPosts": "Articles de Blog",
+      "inquiries": "Demandes",
+      "pending": "En Attente"
+    },
+    "activity": {
+      "title": "Activité Récente",
+      "viewAll": "Voir Tout"
+    },
+    "form": {
+      "add": "Ajouter Nouveau",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "save": "Enregistrer",
+      "cancel": "Annuler",
+      "publish": "Publier",
+      "unpublish": "Dépublier",
+      "featured": "En Vedette",
+      "images": "Images",
+      "uploadImage": "Télécharger une Image",
+      "dragDrop": "Glisser-déposer ou cliquer pour télécharger",
+      "fields": {
+        "name": "Nom",
+        "title": "Titre",
+        "description": "Description",
+        "content": "Contenu",
+        "category": "Catégorie",
+        "region": "Région",
+        "duration": "Durée",
+        "price": "Prix",
+        "difficulty": "Difficulté",
+        "slug": "Slug",
+        "author": "Auteur",
+        "email": "Email",
+        "phone": "Téléphone",
+        "message": "Message",
+        "status": "Statut",
+        "date": "Date"
+      }
+    },
+    "login": {
+      "title": "Connexion Admin",
+      "subtitle": "Connectez-vous à votre tableau de bord admin",
+      "email": "Adresse Email",
+      "password": "Mot de Passe",
+      "submit": "Se Connecter",
+      "rememberMe": "Se souvenir de moi",
+      "forgotPassword": "Mot de passe oublié ?",
+      "error": "Email ou mot de passe invalide"
+    },
+    "confirm": {
+      "delete": "Êtes-vous sûr de vouloir supprimer cet élément ?",
+      "deleteWarning": "Cette action est irréversible.",
+      "yes": "Oui, Supprimer",
+      "no": "Annuler"
+    },
+    "status": {
+      "new": "Nouveau",
+      "read": "Lu",
+      "replied": "Répondu",
+      "closed": "Fermé",
+      "published": "Publié",
+      "draft": "Brouillon"
+    }
+  }
+}

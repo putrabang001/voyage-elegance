@@ -1,0 +1,294 @@
+{
+  "common": {
+    "brandName": "Voyage Elegance",
+    "tagline": "Temukan Harta Karun Laut Terbaik",
+    "loading": "Memuat...",
+    "error": "Terjadi kesalahan",
+    "success": "Berhasil!",
+    "save": "Simpan",
+    "cancel": "Batal",
+    "delete": "Hapus",
+    "edit": "Edit",
+    "add": "Tambah",
+    "view": "Lihat",
+    "back": "Kembali",
+    "next": "Selanjutnya",
+    "previous": "Sebelumnya",
+    "search": "Cari",
+    "filter": "Filter",
+    "sort": "Urutkan",
+    "showAll": "Tampilkan Semua",
+    "readMore": "Baca Selengkapnya",
+    "learnMore": "Pelajari Lebih",
+    "contactUs": "Hubungi Kami",
+    "subscribe": "Berlangganan",
+    "submit": "Kirim",
+    "send": "Kirim",
+    "required": "Wajib",
+    "optional": "Opsional",
+    "from": "Mulai dari",
+    "perPerson": "per orang",
+    "days": "hari",
+    "nights": "malam",
+    "rating": "Rating",
+    "reviews": "ulasan"
+  },
+  "nav": {
+    "home": "Beranda",
+    "destinations": "Destinasi",
+    "tours": "Paket Tour",
+    "gallery": "Galeri",
+    "blog": "Blog",
+    "about": "Tentang Kami",
+    "faq": "FAQ",
+    "contact": "Kontak",
+    "bookNow": "Pesan Sekarang"
+  },
+  "hero": {
+    "title": "Temukan Harta Karun Laut Terbaik",
+    "subtitle": "Rasakan dunia bawah laut yang memukau, pantai yang pristine, dan petualangan tak terlupakan di destinasi laut paling indah di Bumi.",
+    "cta": "Jelajahi Destinasi"
+  },
+  "destinations": {
+    "title": "Destinasi Populer",
+    "subtitle": "Jelajahi koleksi pilihan kami dari destinasi laut paling menakjubkan di dunia",
+    "viewDetails": "Lihat Detail",
+    "featured": "Destinasi Unggulan",
+    "all": "Semua Destinasi",
+    "region": "Wilayah",
+    "highlights": "Keunggulan",
+    "gallery": "Galeri Foto",
+    "relatedTours": "Tour Terkait",
+    "included": "Yang Termasuk",
+    "faq": "Pertanyaan Umum",
+    "inquiry": "Kirim Pertanyaan"
+  },
+  "tours": {
+    "title": "Tour Populer",
+    "subtitle": "Pengalaman perjalanan pilihan untuk kenangan tak terlupakan",
+    "viewDetails": "Lihat Detail",
+    "featured": "Tour Unggulan",
+    "all": "Semua Tour",
+    "duration": "Durasi",
+    "groupSize": "Ukuran Grup",
+    "difficulty": "Tingkat Kesulitan",
+    "easy": "Mudah",
+    "moderate": "Sedang",
+    "challenging": "Menantang",
+    "itinerary": "Itinerary",
+    "includes": "Yang Termasuk",
+    "excludes": "Yang Tidak Termasuk",
+    "price": "Harga",
+    "bookNow": "Pesan Sekarang",
+    "inquiry": "Kirim Pertanyaan",
+    "day": "Hari",
+    "relatedTours": "Anda Mungkin Juga Suka"
+  },
+  "gallery": {
+    "title": "Galeri",
+    "subtitle": "Mengabadikan keindahan surga laut di seluruh dunia",
+    "categories": {
+      "all": "Semua",
+      "underwater": "Bawah Laut",
+      "beach": "Pantai",
+      "sunset": "Matahari Terbenam",
+      "wildlife": "Satwa Liar"
+    }
+  },
+  "blog": {
+    "title": "Cerita Perjalanan",
+    "subtitle": "Inspirasi, tips, dan cerita dari petualangan kami",
+    "readMore": "Baca Artikel",
+    "latestPosts": "Artikel Terbaru",
+    "popularPosts": "Artikel Populer",
+    "categories": "Kategori",
+    "share": "Bagikan",
+    "relatedPosts": "Artikel Terkait",
+    "by": "Oleh",
+    "minuteRead": "menit baca"
+  },
+  "about": {
+    "title": "Tentang Kami",
+    "subtitle": "Partner terpercaya Anda dalam eksplorasi laut",
+    "story": "Cerita Kami",
+    "mission": "Misi Kami",
+    "vision": "Visi Kami",
+    "team": "Tim Kami",
+    "stats": {
+      "experience": "Tahun Pengalaman",
+      "destinations": "Destinasi",
+      "travelers": "Pelancong Bahagia",
+      "tours": "Tour Selesai"
+    }
+  },
+  "contact": {
+    "title": "Hubungi Kami",
+    "subtitle": "Kami siap membantu Anda merencanakan petualangan laut sempurna",
+    "form": {
+      "name": "Nama Lengkap",
+      "email": "Alamat Email",
+      "phone": "Nomor Telepon",
+      "destination": "Destinasi yang Diminati",
+      "tour": "Tour yang Diminati",
+      "message": "Pesan Anda",
+      "submit": "Kirim Pesan"
+    },
+    "info": {
+      "address": "Alamat",
+      "email": "Email",
+      "phone": "Telepon",
+      "whatsapp": "WhatsApp",
+      "hours": "Jam Operasional"
+    },
+    "success": "Terima kasih atas pesan Anda! Kami akan segera menghubungi Anda dalam 24 jam.",
+    "mapTitle": "Temukan Kami"
+  },
+  "faq": {
+    "title": "Pertanyaan yang Sering Diajukan",
+    "subtitle": "Temukan jawaban untuk pertanyaan umum tentang tour dan layanan kami",
+    "search": "Cari pertanyaan...",
+    "noResults": "Tidak ada pertanyaan yang cocok dengan pencarian Anda.",
+    "categories": {
+      "general": "Umum",
+      "booking": "Pemesanan & Pembayaran",
+      "trip": "Selama Perjalanan",
+      "safety": "Keamanan & Kesehatan",
+      "equipment": "Peralatan & Perlengkapan"
+    }
+  },
+  "testimonials": {
+    "title": "Kata Para Pelancong Kami",
+    "subtitle": "Cerita dari petualang yang telah merasakan tour kami"
+  },
+  "newsletter": {
+    "title": "Tetap Terupdate",
+    "subtitle": "Berlangganan newsletter kami untuk penawaran eksklusif dan inspirasi perjalanan",
+    "placeholder": "Masukkan alamat email Anda",
+    "button": "Berlangganan",
+    "success": "Terima kasih telah berlangganan!",
+    "error": "Silakan masukkan alamat email yang valid."
+  },
+  "footer": {
+    "about": {
+      "title": "Tentang Kami",
+      "description": "Voyage Elegance adalah gerbang Anda menuju petualangan laut luar biasa. Kami merancang pengalaman tak terlupakan di destinasi kelautan terindah di dunia."
+    },
+    "quickLinks": {
+      "title": "Tautan Cepat",
+      "destinations": "Destinasi",
+      "tours": "Paket Tour",
+      "gallery": "Galeri",
+      "blog": "Blog",
+      "contact": "Kontak"
+    },
+    "support": {
+      "title": "Dukungan",
+      "faq": "FAQ",
+      "terms": "Syarat Layanan",
+      "privacy": "Kebijakan Privasi",
+      "cancellation": "Kebijakan Pembatalan"
+    },
+    "connect": {
+      "title": "Ikuti Kami"
+    },
+    "copyright": "© 2026 Voyage Elegance. Hak cipta dilindungi."
+  },
+  "inquiry": {
+    "title": "Kirim Pertanyaan",
+    "subtitle": "Isi formulir di bawah ini dan kami akan menghubungi Anda dalam 24 jam",
+    "success": "Terima kasih atas pertanyaan Anda! Kami akan merespons dalam 24 jam.",
+    "selectDestination": "Pilih Destinasi",
+    "selectTour": "Pilih Tour"
+  },
+  "errors": {
+    "notFound": "Halaman Tidak Ditemukan",
+    "notFoundMessage": "Halaman yang Anda cari tidak ada atau telah dipindahkan.",
+    "serverError": "Kesalahan Server",
+    "serverErrorMessage": "Terjadi kesalahan di pihak kami. Silakan coba lagi nanti.",
+    "backHome": "Kembali ke Beranda"
+  },
+  "admin": {
+    "dashboard": "Dasbor",
+    "content": "Kelola Konten",
+    "destinations": "Destinasi",
+    "tours": "Tour",
+    "blog": "Artikel Blog",
+    "gallery": "Galeri",
+    "testimonials": "Testimoni",
+    "faqs": "FAQ",
+    "communications": "Komunikasi",
+    "inquiries": "Pertanyaan",
+    "system": "Sistem",
+    "activityLog": "Log Aktivitas",
+    "settings": "Pengaturan",
+    "profile": "Profil",
+    "logout": "Keluar",
+    "welcome": "Selamat datang kembali",
+    "stats": {
+      "destinations": "Destinasi",
+      "tours": "Tour",
+      "blogPosts": "Artikel Blog",
+      "inquiries": "Pertanyaan",
+      "pending": "Menunggu"
+    },
+    "activity": {
+      "title": "Aktivitas Terbaru",
+      "viewAll": "Lihat Semua"
+    },
+    "form": {
+      "add": "Tambah Baru",
+      "edit": "Edit",
+      "delete": "Hapus",
+      "save": "Simpan",
+      "cancel": "Batal",
+      "publish": "Terbitkan",
+      "unpublish": "Batalkan",
+      "featured": "Unggulan",
+      "images": "Gambar",
+      "uploadImage": "Unggah Gambar",
+      "dragDrop": "Seret dan letakkan atau klik untuk mengunggah",
+      "fields": {
+        "name": "Nama",
+        "title": "Judul",
+        "description": "Deskripsi",
+        "content": "Konten",
+        "category": "Kategori",
+        "region": "Wilayah",
+        "duration": "Durasi",
+        "price": "Harga",
+        "difficulty": "Kesulitan",
+        "slug": "Slug",
+        "author": "Penulis",
+        "email": "Email",
+        "phone": "Telepon",
+        "message": "Pesan",
+        "status": "Status",
+        "date": "Tanggal"
+      }
+    },
+    "login": {
+      "title": "Login Admin",
+      "subtitle": "Masuk ke dasbor admin Anda",
+      "email": "Alamat Email",
+      "password": "Kata Sandi",
+      "submit": "Masuk",
+      "rememberMe": "Ingat saya",
+      "forgotPassword": "Lupa kata sandi?",
+      "error": "Email atau kata sandi tidak valid"
+    },
+    "confirm": {
+      "delete": "Apakah Anda yakin ingin menghapus item ini?",
+      "deleteWarning": "Tindakan ini tidak dapat dibatalkan.",
+      "yes": "Ya, Hapus",
+      "no": "Batal"
+    },
+    "status": {
+      "new": "Baru",
+      "read": "Dibaca",
+      "replied": "Dibalas",
+      "closed": "Ditutup",
+      "published": "Diterbitkan",
+      "draft": "Draf"
+    }
+  }
+}

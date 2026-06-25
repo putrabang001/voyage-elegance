@@ -1,0 +1,294 @@
+{
+  "common": {
+    "brandName": "Voyage Elegance",
+    "tagline": "Discover the Ocean's Finest Treasures",
+    "loading": "Loading...",
+    "error": "Something went wrong",
+    "success": "Success!",
+    "save": "Save",
+    "cancel": "Cancel",
+    "delete": "Delete",
+    "edit": "Edit",
+    "add": "Add",
+    "view": "View",
+    "back": "Back",
+    "next": "Next",
+    "previous": "Previous",
+    "search": "Search",
+    "filter": "Filter",
+    "sort": "Sort",
+    "showAll": "Show All",
+    "readMore": "Read More",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us",
+    "subscribe": "Subscribe",
+    "submit": "Submit",
+    "send": "Send",
+    "required": "Required",
+    "optional": "Optional",
+    "from": "From",
+    "perPerson": "per person",
+    "days": "days",
+    "nights": "nights",
+    "rating": "Rating",
+    "reviews": "reviews"
+  },
+  "nav": {
+    "home": "Home",
+    "destinations": "Destinations",
+    "tours": "Tours",
+    "gallery": "Gallery",
+    "blog": "Blog",
+    "about": "About Us",
+    "faq": "FAQ",
+    "contact": "Contact",
+    "bookNow": "Book Now"
+  },
+  "hero": {
+    "title": "Discover the Ocean's Finest Treasures",
+    "subtitle": "Experience breathtaking underwater worlds, pristine beaches, and unforgettable adventures across the most beautiful ocean destinations on Earth.",
+    "cta": "Explore Destinations"
+  },
+  "destinations": {
+    "title": "Popular Destinations",
+    "subtitle": "Explore our handpicked collection of the world's most stunning ocean destinations",
+    "viewDetails": "View Details",
+    "featured": "Featured Destinations",
+    "all": "All Destinations",
+    "region": "Region",
+    "highlights": "Highlights",
+    "gallery": "Photo Gallery",
+    "relatedTours": "Related Tours",
+    "included": "What's Included",
+    "faq": "Frequently Asked Questions",
+    "inquiry": "Send Inquiry"
+  },
+  "tours": {
+    "title": "Popular Tours",
+    "subtitle": "Curated travel experiences designed for unforgettable memories",
+    "viewDetails": "View Details",
+    "featured": "Featured Tours",
+    "all": "All Tours",
+    "duration": "Duration",
+    "groupSize": "Group Size",
+    "difficulty": "Difficulty",
+    "easy": "Easy",
+    "moderate": "Moderate",
+    "challenging": "Challenging",
+    "itinerary": "Itinerary",
+    "includes": "What's Included",
+    "excludes": "Not Included",
+    "price": "Price",
+    "bookNow": "Book Now",
+    "inquiry": "Send Inquiry",
+    "day": "Day",
+    "relatedTours": "You Might Also Like"
+  },
+  "gallery": {
+    "title": "Gallery",
+    "subtitle": "Capturing the beauty of ocean paradises around the world",
+    "categories": {
+      "all": "All",
+      "underwater": "Underwater",
+      "beach": "Beach",
+      "sunset": "Sunset",
+      "wildlife": "Wildlife"
+    }
+  },
+  "blog": {
+    "title": "Travel Stories",
+    "subtitle": "Inspiration, tips, and stories from our adventures",
+    "readMore": "Read Article",
+    "latestPosts": "Latest Posts",
+    "popularPosts": "Popular Posts",
+    "categories": "Categories",
+    "share": "Share",
+    "relatedPosts": "Related Articles",
+    "by": "By",
+    "minuteRead": "min read"
+  },
+  "about": {
+    "title": "About Us",
+    "subtitle": "Your trusted partner in ocean exploration",
+    "story": "Our Story",
+    "mission": "Our Mission",
+    "vision": "Our Vision",
+    "team": "Our Team",
+    "stats": {
+      "experience": "Years of Experience",
+      "destinations": "Destinations",
+      "travelers": "Happy Travelers",
+      "tours": "Tours Completed"
+    }
+  },
+  "contact": {
+    "title": "Get in Touch",
+    "subtitle": "We're here to help you plan your perfect ocean adventure",
+    "form": {
+      "name": "Full Name",
+      "email": "Email Address",
+      "phone": "Phone Number",
+      "destination": "Interested Destination",
+      "tour": "Interested Tour",
+      "message": "Your Message",
+      "submit": "Send Message"
+    },
+    "info": {
+      "address": "Address",
+      "email": "Email",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "hours": "Business Hours"
+    },
+    "success": "Thank you for your message! We'll get back to you within 24 hours.",
+    "mapTitle": "Find Us"
+  },
+  "faq": {
+    "title": "Frequently Asked Questions",
+    "subtitle": "Find answers to common questions about our tours and services",
+    "search": "Search questions...",
+    "noResults": "No questions found matching your search.",
+    "categories": {
+      "general": "General",
+      "booking": "Booking & Payment",
+      "trip": "On the Trip",
+      "safety": "Safety & Health",
+      "equipment": "Equipment & Gear"
+    }
+  },
+  "testimonials": {
+    "title": "What Our Travelers Say",
+    "subtitle": "Stories from adventurers who've experienced our tours"
+  },
+  "newsletter": {
+    "title": "Stay Updated",
+    "subtitle": "Subscribe to our newsletter for exclusive offers and travel inspiration",
+    "placeholder": "Enter your email address",
+    "button": "Subscribe",
+    "success": "Thank you for subscribing!",
+    "error": "Please enter a valid email address."
+  },
+  "footer": {
+    "about": {
+      "title": "About Us",
+      "description": "Voyage Elegance is your gateway to extraordinary ocean adventures. We curate unforgettable experiences in the world's most beautiful marine destinations."
+    },
+    "quickLinks": {
+      "title": "Quick Links",
+      "destinations": "Destinations",
+      "tours": "Tours",
+      "gallery": "Gallery",
+      "blog": "Blog",
+      "contact": "Contact"
+    },
+    "support": {
+      "title": "Support",
+      "faq": "FAQ",
+      "terms": "Terms of Service",
+      "privacy": "Privacy Policy",
+      "cancellation": "Cancellation Policy"
+    },
+    "connect": {
+      "title": "Connect"
+    },
+    "copyright": "© 2026 Voyage Elegance. All rights reserved."
+  },
+  "inquiry": {
+    "title": "Send Inquiry",
+    "subtitle": "Fill out the form below and we'll get back to you within 24 hours",
+    "success": "Thank you for your inquiry! We'll respond within 24 hours.",
+    "selectDestination": "Select Destination",
+    "selectTour": "Select Tour"
+  },
+  "errors": {
+    "notFound": "Page Not Found",
+    "notFoundMessage": "The page you're looking for doesn't exist or has been moved.",
+    "serverError": "Server Error",
+    "serverErrorMessage": "Something went wrong on our end. Please try again later.",
+    "backHome": "Back to Home"
+  },
+  "admin": {
+    "dashboard": "Dashboard",
+    "content": "Content Management",
+    "destinations": "Destinations",
+    "tours": "Tours",
+    "blog": "Blog Posts",
+    "gallery": "Gallery",
+    "testimonials": "Testimonials",
+    "faqs": "FAQs",
+    "communications": "Communications",
+    "inquiries": "Inquiries",
+    "system": "System",
+    "activityLog": "Activity Log",
+    "settings": "Settings",
+    "profile": "Profile",
+    "logout": "Logout",
+    "welcome": "Welcome back",
+    "stats": {
+      "destinations": "Destinations",
+      "tours": "Tours",
+      "blogPosts": "Blog Posts",
+      "inquiries": "Inquiries",
+      "pending": "Pending"
+    },
+    "activity": {
+      "title": "Recent Activity",
+      "viewAll": "View All"
+    },
+    "form": {
+      "add": "Add New",
+      "edit": "Edit",
+      "delete": "Delete",
+      "save": "Save",
+      "cancel": "Cancel",
+      "publish": "Publish",
+      "unpublish": "Unpublish",
+      "featured": "Featured",
+      "images": "Images",
+      "uploadImage": "Upload Image",
+      "dragDrop": "Drag and drop or click to upload",
+      "fields": {
+        "name": "Name",
+        "title": "Title",
+        "description": "Description",
+        "content": "Content",
+        "category": "Category",
+        "region": "Region",
+        "duration": "Duration",
+        "price": "Price",
+        "difficulty": "Difficulty",
+        "slug": "Slug",
+        "author": "Author",
+        "email": "Email",
+        "phone": "Phone",
+        "message": "Message",
+        "status": "Status",
+        "date": "Date"
+      }
+    },
+    "login": {
+      "title": "Admin Login",
+      "subtitle": "Sign in to your admin dashboard",
+      "email": "Email Address",
+      "password": "Password",
+      "submit": "Sign In",
+      "rememberMe": "Remember me",
+      "forgotPassword": "Forgot password?",
+      "error": "Invalid email or password"
+    },
+    "confirm": {
+      "delete": "Are you sure you want to delete this item?",
+      "deleteWarning": "This action cannot be undone.",
+      "yes": "Yes, Delete",
+      "no": "Cancel"
+    },
+    "status": {
+      "new": "New",
+      "read": "Read",
+      "replied": "Replied",
+      "closed": "Closed",
+      "published": "Published",
+      "draft": "Draft"
+    }
+  }
+}
